@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Table_Genders">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gender" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Pasporta">
+          <Key>
+            <PropertyRef Name="idSotr" />
+          </Key>
+          <Property Name="idSotr" Type="int" Nullable="false" />
+          <Property Name="number" Type="int" Nullable="false" />
+          <Property Name="seria" Type="int" Nullable="false" />
+          <Property Name="vidan" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Pokupki">
+          <Key>
+            <PropertyRef Name="idPokupka" />
+          </Key>
+          <Property Name="idPokupka" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="idTovar" Type="int" Nullable="false" />
+          <Property Name="idSotr" Type="int" Nullable="false" />
+          <Property Name="kol" Type="float" Nullable="false" />
+          <Property Name="count" Type="float" Nullable="false" />
+          <Property Name="stoimost" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Postavki">
+          <Key>
+            <PropertyRef Name="idPost" />
+          </Key>
+          <Property Name="idPost" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="idTovar" Type="int" Nullable="false" />
+          <Property Name="idProvider" Type="int" Nullable="false" />
+          <Property Name="kol" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="count" Type="float" Nullable="false" />
+          <Property Name="stoimost" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Providers">
+          <Key>
+            <PropertyRef Name="idProvider" />
+          </Key>
+          <Property Name="idProvider" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="predstavitel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Roles">
+          <Key>
+            <PropertyRef Name="idRole" />
+          </Key>
+          <Property Name="idRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Sotrudniki">
+          <Key>
+            <PropertyRef Name="idSotr" />
+          </Key>
+          <Property Name="idSotr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="otchestvo" Type="nvarchar" MaxLength="50" />
+          <Property Name="idGender" Type="int" Nullable="false" />
+          <Property Name="birthday" Type="date" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="int" Nullable="false" />
+          <Property Name="idRole" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Tovari">
+          <Key>
+            <PropertyRef Name="idTovar" />
+          </Key>
+          <Property Name="idTovar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tovar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="count" Type="float" Nullable="false" />
+          <Property Name="kol" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Pokupki_Sotrudniki">
+          <End Role="Table_Sotrudniki" Type="Self.Table_Sotrudniki" Multiplicity="1" />
+          <End Role="Table_Pokupki" Type="Self.Table_Pokupki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Sotrudniki">
+              <PropertyRef Name="idSotr" />
+            </Principal>
+            <Dependent Role="Table_Pokupki">
+              <PropertyRef Name="idSotr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pokupki_Tovari">
+          <End Role="Table_Tovari" Type="Self.Table_Tovari" Multiplicity="1" />
+          <End Role="Table_Pokupki" Type="Self.Table_Pokupki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Tovari">
+              <PropertyRef Name="idTovar" />
+            </Principal>
+            <Dependent Role="Table_Pokupki">
+              <PropertyRef Name="idTovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postavki_Providers">
+          <End Role="Table_Providers" Type="Self.Table_Providers" Multiplicity="1" />
+          <End Role="Table_Postavki" Type="Self.Table_Postavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Providers">
+              <PropertyRef Name="idProvider" />
+            </Principal>
+            <Dependent Role="Table_Postavki">
+              <PropertyRef Name="idProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postavki_Tovari">
+          <End Role="Table_Tovari" Type="Self.Table_Tovari" Multiplicity="1" />
+          <End Role="Table_Postavki" Type="Self.Table_Postavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Tovari">
+              <PropertyRef Name="idTovar" />
+            </Principal>
+            <Dependent Role="Table_Postavki">
+              <PropertyRef Name="idTovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudniki_Pol">
+          <End Role="Table_Genders" Type="Self.Table_Genders" Multiplicity="1" />
+          <End Role="Table_Sotrudniki" Type="Self.Table_Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Genders">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Table_Sotrudniki">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Pasporta_Table_Sotrudniki">
+          <End Role="Table_Sotrudniki" Type="Self.Table_Sotrudniki" Multiplicity="1" />
+          <End Role="Table_Pasporta" Type="Self.Table_Pasporta" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Sotrudniki">
+              <PropertyRef Name="idSotr" />
+            </Principal>
+            <Dependent Role="Table_Pasporta">
+              <PropertyRef Name="idSotr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Sotrudniki_Table_Roles">
+          <End Role="Table_Roles" Type="Self.Table_Roles" Multiplicity="1" />
+          <End Role="Table_Sotrudniki" Type="Self.Table_Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Roles">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Table_Sotrudniki">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="Table_Genders" EntityType="Self.Table_Genders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Pasporta" EntityType="Self.Table_Pasporta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Pokupki" EntityType="Self.Table_Pokupki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Postavki" EntityType="Self.Table_Postavki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Providers" EntityType="Self.Table_Providers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Roles" EntityType="Self.Table_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Sotrudniki" EntityType="Self.Table_Sotrudniki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Tovari" EntityType="Self.Table_Tovari" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Pokupki_Sotrudniki" Association="Self.FK_Pokupki_Sotrudniki">
+            <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
+            <End Role="Table_Pokupki" EntitySet="Table_Pokupki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pokupki_Tovari" Association="Self.FK_Pokupki_Tovari">
+            <End Role="Table_Tovari" EntitySet="Table_Tovari" />
+            <End Role="Table_Pokupki" EntitySet="Table_Pokupki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postavki_Providers" Association="Self.FK_Postavki_Providers">
+            <End Role="Table_Providers" EntitySet="Table_Providers" />
+            <End Role="Table_Postavki" EntitySet="Table_Postavki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postavki_Tovari" Association="Self.FK_Postavki_Tovari">
+            <End Role="Table_Tovari" EntitySet="Table_Tovari" />
+            <End Role="Table_Postavki" EntitySet="Table_Postavki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudniki_Pol" Association="Self.FK_Sotrudniki_Pol">
+            <End Role="Table_Genders" EntitySet="Table_Genders" />
+            <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Pasporta_Table_Sotrudniki" Association="Self.FK_Table_Pasporta_Table_Sotrudniki">
+            <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
+            <End Role="Table_Pasporta" EntitySet="Table_Pasporta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Sotrudniki_Table_Roles" Association="Self.FK_Table_Sotrudniki_Table_Roles">
+            <End Role="Table_Roles" EntitySet="Table_Roles" />
+            <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Table_Genders" EntityType="Model.Table_Genders" />
+          <EntitySet Name="Table_Pasporta" EntityType="Model.Table_Pasporta" />
+          <EntitySet Name="Table_Pokupki" EntityType="Model.Table_Pokupki" />
+          <EntitySet Name="Table_Postavki" EntityType="Model.Table_Postavki" />
+          <EntitySet Name="Table_Providers" EntityType="Model.Table_Providers" />
+          <EntitySet Name="Table_Roles" EntityType="Model.Table_Roles" />
+          <EntitySet Name="Table_Sotrudniki" EntityType="Model.Table_Sotrudniki" />
+          <EntitySet Name="Table_Tovari" EntityType="Model.Table_Tovari" />
+          <AssociationSet Name="FK_Sotrudniki_Pol" Association="Model.FK_Sotrudniki_Pol">
+            <End Role="Table_Genders" EntitySet="Table_Genders" />
+            <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Pasporta_Table_Sotrudniki" Association="Model.FK_Table_Pasporta_Table_Sotrudniki">
+            <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
+            <End Role="Table_Pasporta" EntitySet="Table_Pasporta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pokupki_Sotrudniki" Association="Model.FK_Pokupki_Sotrudniki">
+            <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
+            <End Role="Table_Pokupki" EntitySet="Table_Pokupki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pokupki_Tovari" Association="Model.FK_Pokupki_Tovari">
+            <End Role="Table_Tovari" EntitySet="Table_Tovari" />
+            <End Role="Table_Pokupki" EntitySet="Table_Pokupki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postavki_Providers" Association="Model.FK_Postavki_Providers">
+            <End Role="Table_Providers" EntitySet="Table_Providers" />
+            <End Role="Table_Postavki" EntitySet="Table_Postavki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postavki_Tovari" Association="Model.FK_Postavki_Tovari">
+            <End Role="Table_Tovari" EntitySet="Table_Tovari" />
+            <End Role="Table_Postavki" EntitySet="Table_Postavki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Sotrudniki_Table_Roles" Association="Model.FK_Table_Sotrudniki_Table_Roles">
+            <End Role="Table_Roles" EntitySet="Table_Roles" />
+            <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Table_Genders">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Table_Sotrudniki" Relationship="Model.FK_Sotrudniki_Pol" FromRole="Table_Genders" ToRole="Table_Sotrudniki" />
+        </EntityType>
+        <EntityType Name="Table_Pasporta">
+          <Key>
+            <PropertyRef Name="idSotr" />
+          </Key>
+          <Property Name="idSotr" Type="Int32" Nullable="false" />
+          <Property Name="number" Type="Int32" Nullable="false" />
+          <Property Name="seria" Type="Int32" Nullable="false" />
+          <Property Name="vidan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Sotrudniki" Relationship="Model.FK_Table_Pasporta_Table_Sotrudniki" FromRole="Table_Pasporta" ToRole="Table_Sotrudniki" />
+        </EntityType>
+        <EntityType Name="Table_Pokupki">
+          <Key>
+            <PropertyRef Name="idPokupka" />
+          </Key>
+          <Property Name="idPokupka" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idTovar" Type="Int32" Nullable="false" />
+          <Property Name="idSotr" Type="Int32" Nullable="false" />
+          <Property Name="kol" Type="Double" Nullable="false" />
+          <Property Name="count" Type="Double" Nullable="false" />
+          <Property Name="stoimost" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Table_Sotrudniki" Relationship="Model.FK_Pokupki_Sotrudniki" FromRole="Table_Pokupki" ToRole="Table_Sotrudniki" />
+          <NavigationProperty Name="Table_Tovari" Relationship="Model.FK_Pokupki_Tovari" FromRole="Table_Pokupki" ToRole="Table_Tovari" />
+        </EntityType>
+        <EntityType Name="Table_Postavki">
+          <Key>
+            <PropertyRef Name="idPost" />
+          </Key>
+          <Property Name="idPost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idTovar" Type="Int32" Nullable="false" />
+          <Property Name="idProvider" Type="Int32" Nullable="false" />
+          <Property Name="kol" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="count" Type="Double" Nullable="false" />
+          <Property Name="stoimost" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Table_Providers" Relationship="Model.FK_Postavki_Providers" FromRole="Table_Postavki" ToRole="Table_Providers" />
+          <NavigationProperty Name="Table_Tovari" Relationship="Model.FK_Postavki_Tovari" FromRole="Table_Postavki" ToRole="Table_Tovari" />
+        </EntityType>
+        <EntityType Name="Table_Providers">
+          <Key>
+            <PropertyRef Name="idProvider" />
+          </Key>
+          <Property Name="idProvider" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="predstavitel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Postavki" Relationship="Model.FK_Postavki_Providers" FromRole="Table_Providers" ToRole="Table_Postavki" />
+        </EntityType>
+        <EntityType Name="Table_Roles">
+          <Key>
+            <PropertyRef Name="idRole" />
+          </Key>
+          <Property Name="idRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Sotrudniki" Relationship="Model.FK_Table_Sotrudniki_Table_Roles" FromRole="Table_Roles" ToRole="Table_Sotrudniki" />
+        </EntityType>
+        <EntityType Name="Table_Sotrudniki">
+          <Key>
+            <PropertyRef Name="idSotr" />
+          </Key>
+          <Property Name="idSotr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idGender" Type="Int32" Nullable="false" />
+          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="Int32" Nullable="false" />
+          <Property Name="idRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Table_Genders" Relationship="Model.FK_Sotrudniki_Pol" FromRole="Table_Sotrudniki" ToRole="Table_Genders" />
+          <NavigationProperty Name="Table_Pasporta" Relationship="Model.FK_Table_Pasporta_Table_Sotrudniki" FromRole="Table_Sotrudniki" ToRole="Table_Pasporta" />
+          <NavigationProperty Name="Table_Pokupki" Relationship="Model.FK_Pokupki_Sotrudniki" FromRole="Table_Sotrudniki" ToRole="Table_Pokupki" />
+          <NavigationProperty Name="Table_Roles" Relationship="Model.FK_Table_Sotrudniki_Table_Roles" FromRole="Table_Sotrudniki" ToRole="Table_Roles" />
+        </EntityType>
+        <EntityType Name="Table_Tovari">
+          <Key>
+            <PropertyRef Name="idTovar" />
+          </Key>
+          <Property Name="idTovar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tovar" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="count" Type="Double" Nullable="false" />
+          <Property Name="kol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Table_Pokupki" Relationship="Model.FK_Pokupki_Tovari" FromRole="Table_Tovari" ToRole="Table_Pokupki" />
+          <NavigationProperty Name="Table_Postavki" Relationship="Model.FK_Postavki_Tovari" FromRole="Table_Tovari" ToRole="Table_Postavki" />
+        </EntityType>
+        <Association Name="FK_Sotrudniki_Pol">
+          <End Type="Model.Table_Genders" Role="Table_Genders" Multiplicity="1" />
+          <End Type="Model.Table_Sotrudniki" Role="Table_Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Genders">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Table_Sotrudniki">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Pasporta_Table_Sotrudniki">
+          <End Type="Model.Table_Sotrudniki" Role="Table_Sotrudniki" Multiplicity="1" />
+          <End Type="Model.Table_Pasporta" Role="Table_Pasporta" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Sotrudniki">
+              <PropertyRef Name="idSotr" />
+            </Principal>
+            <Dependent Role="Table_Pasporta">
+              <PropertyRef Name="idSotr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pokupki_Sotrudniki">
+          <End Type="Model.Table_Sotrudniki" Role="Table_Sotrudniki" Multiplicity="1" />
+          <End Type="Model.Table_Pokupki" Role="Table_Pokupki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Sotrudniki">
+              <PropertyRef Name="idSotr" />
+            </Principal>
+            <Dependent Role="Table_Pokupki">
+              <PropertyRef Name="idSotr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pokupki_Tovari">
+          <End Type="Model.Table_Tovari" Role="Table_Tovari" Multiplicity="1" />
+          <End Type="Model.Table_Pokupki" Role="Table_Pokupki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Tovari">
+              <PropertyRef Name="idTovar" />
+            </Principal>
+            <Dependent Role="Table_Pokupki">
+              <PropertyRef Name="idTovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postavki_Providers">
+          <End Type="Model.Table_Providers" Role="Table_Providers" Multiplicity="1" />
+          <End Type="Model.Table_Postavki" Role="Table_Postavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Providers">
+              <PropertyRef Name="idProvider" />
+            </Principal>
+            <Dependent Role="Table_Postavki">
+              <PropertyRef Name="idProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postavki_Tovari">
+          <End Type="Model.Table_Tovari" Role="Table_Tovari" Multiplicity="1" />
+          <End Type="Model.Table_Postavki" Role="Table_Postavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Tovari">
+              <PropertyRef Name="idTovar" />
+            </Principal>
+            <Dependent Role="Table_Postavki">
+              <PropertyRef Name="idTovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Sotrudniki_Table_Roles">
+          <End Type="Model.Table_Roles" Role="Table_Roles" Multiplicity="1" />
+          <End Type="Model.Table_Sotrudniki" Role="Table_Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Roles">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Table_Sotrudniki">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Table_Genders">
+            <EntityTypeMapping TypeName="Model.Table_Genders">
+              <MappingFragment StoreEntitySet="Table_Genders">
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Pasporta">
+            <EntityTypeMapping TypeName="Model.Table_Pasporta">
+              <MappingFragment StoreEntitySet="Table_Pasporta">
+                <ScalarProperty Name="vidan" ColumnName="vidan" />
+                <ScalarProperty Name="seria" ColumnName="seria" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="idSotr" ColumnName="idSotr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Pokupki">
+            <EntityTypeMapping TypeName="Model.Table_Pokupki">
+              <MappingFragment StoreEntitySet="Table_Pokupki">
+                <ScalarProperty Name="stoimost" ColumnName="stoimost" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="kol" ColumnName="kol" />
+                <ScalarProperty Name="idSotr" ColumnName="idSotr" />
+                <ScalarProperty Name="idTovar" ColumnName="idTovar" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="idPokupka" ColumnName="idPokupka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Postavki">
+            <EntityTypeMapping TypeName="Model.Table_Postavki">
+              <MappingFragment StoreEntitySet="Table_Postavki">
+                <ScalarProperty Name="stoimost" ColumnName="stoimost" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="kol" ColumnName="kol" />
+                <ScalarProperty Name="idProvider" ColumnName="idProvider" />
+                <ScalarProperty Name="idTovar" ColumnName="idTovar" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="idPost" ColumnName="idPost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Providers">
+            <EntityTypeMapping TypeName="Model.Table_Providers">
+              <MappingFragment StoreEntitySet="Table_Providers">
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="predstavitel" ColumnName="predstavitel" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="idProvider" ColumnName="idProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Roles">
+            <EntityTypeMapping TypeName="Model.Table_Roles">
+              <MappingFragment StoreEntitySet="Table_Roles">
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Sotrudniki">
+            <EntityTypeMapping TypeName="Model.Table_Sotrudniki">
+              <MappingFragment StoreEntitySet="Table_Sotrudniki">
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+                <ScalarProperty Name="otchestvo" ColumnName="otchestvo" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="idSotr" ColumnName="idSotr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Tovari">
+            <EntityTypeMapping TypeName="Model.Table_Tovari">
+              <MappingFragment StoreEntitySet="Table_Tovari">
+                <ScalarProperty Name="kol" ColumnName="kol" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="tovar" ColumnName="tovar" />
+                <ScalarProperty Name="idTovar" ColumnName="idTovar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
