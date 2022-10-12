@@ -9,6 +9,19 @@
       Title="PageAuto">
 
     <Grid>
-        
+        <StackPanel>
+            <StackPanel>
+                <TextBlock Text="Авторизация"/>
+            </StackPanel>
+            <StackPanel>
+                <GroupBox Header="Введите логин">
+                    <TextBox Name="autoLogin"/>
+                </GroupBox>
+                <GroupBox Header="Введите пароль">
+                    <PasswordBox Name="autoPassword"/>
+                </GroupBox>
+            </StackPanel>
+            <Button Name="btn_Auto" Content="Войти" Click="btn_Auto_Click"/>
+            </StackPanel>
     </Grid>
 </Page>

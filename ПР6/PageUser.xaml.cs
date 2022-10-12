@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace ПР6
 {
     /// <summary>
-    /// Логика взаимодействия для PageMain.xaml
+    /// Логика взаимодействия для PageUser.xaml
     /// </summary>
-    public partial class PageMain : Page
+    public partial class PageUser : Page
     {
-        public PageMain()
+        public PageUser()
         {
             InitializeComponent();
         }
-
     }
 }

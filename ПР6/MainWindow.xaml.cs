@@ -1,4 +1,8 @@
-﻿using System;
+﻿
+//Логин администратора: admin
+//Пароль администратора: admin
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +22,7 @@ namespace ПР6
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
+    /// 
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -26,6 +31,16 @@ namespace ПР6
             ClassFrame.mainFrame = frMain;
             ClassFrame.mainFrame.Navigate(new PageMain());
             ClassBase.Base = new Entities();
+        }
+
+        private void btnAuto_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.mainFrame.Navigate(new PageAuto());
+        }
+
+        private void btnReg_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.mainFrame.Navigate(new PageReg());
         }
     }
 }

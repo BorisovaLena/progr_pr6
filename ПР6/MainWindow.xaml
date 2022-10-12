@@ -5,16 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ПР6"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="4*"/>
-            <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <TextBlock Text="ПРОГРАММУЛИЧКА"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Image Source="image\log.png"/>
+            <TextBlock Text="Магазин косметики *Красота*"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="btnAuto" Content="Авторизироваться" Width="150" Click="btnAuto_Click"/>
+                <Button Name="btnReg" Content="Зарегистироваться" Width="150" Click="btnReg_Click"/>
+            </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <Frame Name="frMain" NavigationUIVisibility="Hidden"/>
