@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ПР6"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="800" Background="#FFF2FF">
+        Title="MainWindow" Height="750" Width="800" Background="#FFF2FF">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -15,7 +15,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FFD9FF">
             <Image Source="image\log.png" Margin="10"/>
             <TextBlock Text="Магазин косметики *Красота*" VerticalAlignment="Center" FontSize="24" Margin="40,0,0,0"/>
-            <StackPanel Margin="50, 20,0,0">
+            <StackPanel Margin="40, 20,0,0">
                 <Button Name="btnAuto" Content="Авторизироваться" Click="btnAuto_Click" Template="{StaticResource CTButon}"/>
                 <Button Name="btnReg" Content="Зарегистироваться" Click="btnReg_Click" Template="{StaticResource CTButon}"/>
             </StackPanel>

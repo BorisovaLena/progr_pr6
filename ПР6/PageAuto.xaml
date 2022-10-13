@@ -21,7 +21,7 @@
                     <PasswordBox Name="autoPassword"/>
                 </GroupBox>
             </StackPanel>
-            <Button Name="btn_Auto" Content="Войти" Click="btn_Auto_Click"/>
+            <Button Name="btn_Auto" Content="Войти" Click="btn_Auto_Click" Template="{StaticResource CTButon2}" Width="150" Height="40"/>
             </StackPanel>
     </Grid>
 </Page>
