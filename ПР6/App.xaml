@@ -4,6 +4,19 @@
              xmlns:local="clr-namespace:ПР6"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="5"/>
+
+        </Style>
+
+        <ControlTemplate x:Key="CTButon" TargetType="Button">
+            <Border CornerRadius="10" BorderBrush="Black" BorderThickness="1" Background="#C39FF3"  Width="170" Height="40" Margin="5">
+                <ContentControl Content="{TemplateBinding Content}" HorizontalAlignment="Center" Margin="5"/>
+
+            </Border>
+        </ControlTemplate>
+        
     </Application.Resources>
 </Application>

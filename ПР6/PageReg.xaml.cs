@@ -66,17 +66,17 @@ namespace ПР6
                     Regex r7 = new Regex("\\d.*\\d");
                     Regex r8 = new Regex("[!@#$%^&*()_+=]");
                     Regex r9 = new Regex("(.+){8,}");
-                    if (r5.IsMatch(regPassword.Password) == true)
-                    {
-                        if (r6.IsMatch(regPassword.Password) == true)
-                        {
-                            if (r7.IsMatch(regPassword.Password) == true)
-                            {
-                                if (r8.IsMatch(regPassword.Password) == true)
-                                {
-                                    if (r9.IsMatch(regPassword.Password) == true)
-                                    {
-                                        int p = Int32.Parse(regPassword.Password);
+                    //if (r5.IsMatch(regPassword.Password) == true)
+                    //{
+                    //    if (r6.IsMatch(regPassword.Password) == true)
+                    //    {
+                    //        if (r7.IsMatch(regPassword.Password) == true)
+                    //        {
+                    //            if (r8.IsMatch(regPassword.Password) == true)
+                    //            {
+                    //                if (r9.IsMatch(regPassword.Password) == true)
+                    //                {
+                                        int p = regPassword.Password.GetHashCode();
                                         Table_Sotrudniki sotr = ClassBase.Base.Table_Sotrudniki.FirstOrDefault(x => x.login == regLogin.Text );
                                         Table_Sotrudniki sotr2 = ClassBase.Base.Table_Sotrudniki.FirstOrDefault(x => x.password == p);
                                         if (sotr == null)
@@ -100,16 +100,16 @@ namespace ПР6
                                         {
                                             MessageBox.Show("Данный логин существует!");
                                         }   
-                                    }
-                                    else { MessageBox.Show("Общая длина пароля не менее 8 символов!"); }
-                                }
-                                else { MessageBox.Show("Пароль должен содержать не менее 1 спец. символа!"); }
-                            }
-                            else { MessageBox.Show("Пароль должен содержать не менее 2 цифры!"); }
-                        }
-                        else { MessageBox.Show("Пароль должен содержать не менее 3 строчных латинских символов!"); }
-                    }
-                    else { MessageBox.Show("Пароль должен содержать не менее 1 заглавного латинского символа!"); }
+                    //                }
+                    //                else { MessageBox.Show("Общая длина пароля не менее 8 символов!"); }
+                    //            }
+                    //            else { MessageBox.Show("Пароль должен содержать не менее 1 спец. символа!"); }
+                    //        }
+                    //        else { MessageBox.Show("Пароль должен содержать не менее 2 цифры!"); }
+                    //    }
+                    //    else { MessageBox.Show("Пароль должен содержать не менее 3 строчных латинских символов!"); }
+                    //}
+                    //else { MessageBox.Show("Пароль должен содержать не менее 1 заглавного латинского символа!"); }
                 }
                 
             }
