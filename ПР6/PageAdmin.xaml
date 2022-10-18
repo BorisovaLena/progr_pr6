@@ -9,6 +9,31 @@
       Title="PageAdmin">
 
     <Grid>
-        <TextBlock Text="Страница администратора"/>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="btnSelect" Content="Исходная" Click="btnSelect_Click" Template="{StaticResource CTButon3}"/>
+                <Button Name="btnSortAsc" Content="По возрастанию" Click="btnSortAsc_Click" Template="{StaticResource CTButon3}"/>
+                <Button Name="btnSortDesc" Content="По убыванию" Click="btnSortDesc_Click" Template="{StaticResource CTButon3}"/>
+                <Button Name="btnFiltM" Content="мужчины" Click="btnFiltM_Click" Template="{StaticResource CTButon3}"/>
+                <Button Name="btnFiltW" Content="женщины" Click="btnFiltW_Click" Template="{StaticResource CTButon3}"/>
+            </StackPanel>
+            
+            <StackPanel>
+                <DataGrid Name="dgUsers" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding surname}"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding name}"/>
+                        <DataGridTextColumn Header="Отчество" Binding="{Binding otchestvo}"/>
+                        <DataGridTextColumn Header="Пол" Binding="{Binding Table_Genders.gender}"/>
+                        <DataGridTextColumn Header="Дата рождения" Binding="{Binding birthday, StringFormat={}{0:dd.MM.yyyy}}"/>
+                        <DataGridTextColumn Header="Логин" Binding="{Binding login}"/>
+                        <DataGridTextColumn Header="Роль" Binding="{Binding Table_Roles.role}"/>
+                    </DataGrid.Columns>
+                    </DataGrid>
+            </StackPanel>
+            
+        </StackPanel>
+      
+        
     </Grid>
 </Page>

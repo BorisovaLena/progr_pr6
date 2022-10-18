@@ -24,5 +24,30 @@ namespace ПР6
         {
             InitializeComponent();
         }
+
+        private void btnSelect_Click(object sender, RoutedEventArgs e)
+        {
+            dgUsers.ItemsSource = ClassBase.Base.Table_Sotrudniki.ToList();
+        }
+
+        private void btnSortAsc_Click(object sender, RoutedEventArgs e)
+        {
+            dgUsers.ItemsSource = ClassBase.Base.Table_Sotrudniki.OrderBy(z=> z.surname).ToList();
+        }
+
+        private void btnSortDesc_Click(object sender, RoutedEventArgs e)
+        {
+            dgUsers.ItemsSource = ClassBase.Base.Table_Sotrudniki.OrderByDescending(z => z.surname).ToList();
+        }
+
+        private void btnFiltM_Click(object sender, RoutedEventArgs e)
+        {
+            dgUsers.ItemsSource = ClassBase.Base.Table_Sotrudniki.Where(z => z.idGender == 1).ToList();
+        }
+
+        private void btnFiltW_Click(object sender, RoutedEventArgs e)
+        {
+            dgUsers.ItemsSource = ClassBase.Base.Table_Sotrudniki.Where(z => z.idGender == 2).ToList();
+        }
     }
 }

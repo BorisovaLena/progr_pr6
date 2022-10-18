@@ -33,6 +33,11 @@
                 <ContentControl Content="{TemplateBinding Content}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
             </Border>
         </ControlTemplate>
+        <ControlTemplate x:Key="CTButon3" TargetType="Button">
+            <Border CornerRadius="10" BorderBrush="Black" BorderThickness="1" Background="#C39FF3"  Width="150" Height="40" Margin="5">
+                <ContentControl Content="{TemplateBinding Content}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
 
     </Application.Resources>
 </Application>
