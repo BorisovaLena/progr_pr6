@@ -26,27 +26,28 @@
                 </GroupBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Пол:" Margin="5,5,20,5"/>
                 <RadioButton Name="regMen" Content="Мужской"/>
                 <RadioButton Name="regWomen" Content="Женский"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Дата рождения"/>
-                <DatePicker Name="regBirthday"></DatePicker>
+                <DatePicker Name="regBirthday" FontSize="18"></DatePicker>
             </StackPanel>
             <StackPanel>
                 <GroupBox Header="Данные паспорта">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Серия"/>
-                            <TextBox Name="regSeria" Width="100" MaxLength="4"/>
+                            <TextBox Name="regSeria" Width="100" MaxLength="4" Margin="10,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Номер"/>
-                            <TextBox Name="regNumber" Width="100" MaxLength="6"/>
+                            <TextBox Name="regNumber" Width="100" MaxLength="6" Margin="10,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Кем выдан"/>
-                            <TextBox Name="regVidan" Width="200"/>
+                            <TextBox Name="regVidan" Width="200" Margin="10,0,0,0"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>

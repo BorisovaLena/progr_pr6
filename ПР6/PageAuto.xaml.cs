@@ -37,11 +37,11 @@ namespace ПР6
             {
                 switch (sotr.idRole)
                 {
-                    case 1:
+                    case 2:
                         MessageBox.Show("Здравствуйте, администратор!");
                         ClassFrame.mainFrame.Navigate(new PageAdmin());
                         break;
-                    case 2:
+                    case 1:
                         MessageBox.Show("Здравствуйте, пользователь!");
                         ClassFrame.mainFrame.Navigate(new PageUser());
                         break;
@@ -50,8 +50,6 @@ namespace ПР6
                         break;
                 }
             }
-            
-
         }
     }
 }
