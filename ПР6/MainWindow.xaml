@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ПР6"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="750" Width="800" Background="#FFF2FF">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Image Source="image\log.png"/>
-            <TextBlock Text="Магазин косметики *Красота*"/>
-            <StackPanel Orientation="Horizontal">
-                <Button Name="btnAuto" Content="Авторизироваться" Width="150" Click="btnAuto_Click"/>
-                <Button Name="btnReg" Content="Зарегистироваться" Width="150" Click="btnReg_Click"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FFD9FF">
+            <Image Source="image\log.png" Margin="10"/>
+            <TextBlock Text="Магазин косметики *Красота*" VerticalAlignment="Center" FontSize="24" Margin="40,0,0,0"/>
+            <StackPanel Margin="40, 20,0,0">
+                <Button Name="btnAuto" Content="Авторизироваться" Click="btnAuto_Click" Template="{StaticResource CTButon}"/>
+                <Button Name="btnReg" Content="Зарегистироваться" Click="btnReg_Click" Template="{StaticResource CTButon}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1">

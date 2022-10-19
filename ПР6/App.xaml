@@ -4,6 +4,40 @@
              xmlns:local="clr-namespace:ПР6"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+
+        <ControlTemplate x:Key="CTButon" TargetType="Button">
+            <Border CornerRadius="10" BorderBrush="Black" BorderThickness="1" Background="#C39FF3"  Width="170" Height="40" Margin="5">
+                <ContentControl Content="{TemplateBinding Content}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="CTButon2" TargetType="Button">
+            <Border CornerRadius="10" BorderBrush="Black" BorderThickness="1" Background="#C39FF3">
+                <ContentControl Content="{TemplateBinding Content}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+        <ControlTemplate x:Key="CTButon3" TargetType="Button">
+            <Border CornerRadius="10" BorderBrush="Black" BorderThickness="1" Background="#C39FF3"  Width="150" Height="40" Margin="5">
+                <ContentControl Content="{TemplateBinding Content}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+
     </Application.Resources>
 </Application>

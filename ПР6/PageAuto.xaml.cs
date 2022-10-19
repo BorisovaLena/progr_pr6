@@ -27,7 +27,7 @@ namespace ПР6
 
         private void btn_Auto_Click(object sender, RoutedEventArgs e)
         {
-            int p = Int32.Parse(autoPassword.Password);
+            int p = autoPassword.Password.GetHashCode();
             Table_Sotrudniki sotr = ClassBase.Base.Table_Sotrudniki.FirstOrDefault(z => z.login == autoLogin.Text && z.password == p); 
             if (sotr == null)
             {
@@ -37,21 +37,19 @@ namespace ПР6
             {
                 switch (sotr.idRole)
                 {
-                    case 1:
+                    case 2:
                         MessageBox.Show("Здравствуйте, администратор!");
                         ClassFrame.mainFrame.Navigate(new PageAdmin());
                         break;
-                    case 2:
+                    case 1:
                         MessageBox.Show("Здравствуйте, пользователь!");
                         ClassFrame.mainFrame.Navigate(new PageUser());
                         break;
                     default:
-                        MessageBox.Show("Пользователь не найден! Повторите ввод!");
+                        
                         break;
                 }
             }
-            
-
         }
     }
 }
