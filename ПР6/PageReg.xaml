@@ -12,7 +12,7 @@
     <Grid >
         <StackPanel>
             <StackPanel>
-                <TextBlock Text="Регистрация"/>
+                <TextBlock Text="Регистрация" Style="{StaticResource TBlockZag}"/>
             </StackPanel>
             <StackPanel>
                 <GroupBox Header="Фамилия">
@@ -26,24 +26,24 @@
                 </GroupBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Пол:" Margin="5,5,20,5"/>
-                <RadioButton Name="regMen" Content="Мужской"/>
-                <RadioButton Name="regWomen" Content="Женский"/>
+                <TextBlock Text="Пол:" Style="{StaticResource TBlock}"/>
+                <RadioButton Name="regMen" Content="Мужской" Style="{StaticResource RB}"/>
+                <RadioButton Name="regWomen" Content="Женский" Style="{StaticResource RB}"/>
             </StackPanel>
-            <StackPanel>
-                <TextBlock Text="Дата рождения"/>
-                <DatePicker Name="regBirthday" FontSize="18"></DatePicker>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Дата рождения" Style="{StaticResource TBlock}"/>
+                <DatePicker Name="regBirthday" FontSize="18" Width="200" Margin="5,0,0,0"></DatePicker>
             </StackPanel>
             <StackPanel>
                 <GroupBox Header="Данные паспорта">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Серия"/>
-                            <TextBox Name="regSeria" Width="100" MaxLength="4" Margin="10,0,0,0"/>
+                            <TextBox Name="regSeria" Width="100" MaxLength="4" Margin="10,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Номер"/>
-                            <TextBox Name="regNumber" Width="100" MaxLength="6" Margin="10,0,0,0"/>
+                            <TextBox Name="regNumber" Width="100" MaxLength="6" Margin="10,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Кем выдан"/>

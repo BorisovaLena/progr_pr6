@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel>
             <StackPanel>
-                <TextBlock Text="Авторизация"/>
+                <TextBlock Text="Авторизация" Style="{StaticResource TBlockZag}"/>
             </StackPanel>
             <StackPanel>
                 <GroupBox Header="Введите логин">

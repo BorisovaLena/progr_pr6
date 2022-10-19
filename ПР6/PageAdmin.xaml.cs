@@ -49,5 +49,18 @@ namespace ПР6
         {
             dgUsers.ItemsSource = ClassBase.Base.Table_Sotrudniki.Where(z => z.idGender == 2).ToList();
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            if(tbSurname.Text != "")
+            {
+                dgUsers.ItemsSource = ClassBase.Base.Table_Sotrudniki.Where(z => z.surname == tbSurname.Text).ToList();
+            }
+            if(tbName.Text != "")
+            {
+                 dgUsers.ItemsSource = ClassBase.Base.Table_Sotrudniki.Where(z => z.name == tbName.Text).ToList();
+            }
+
+        }
     }
 }
