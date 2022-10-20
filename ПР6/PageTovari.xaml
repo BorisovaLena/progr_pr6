@@ -5,18 +5,18 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ПР6"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="570" d:DesignWidth="800"
       Title="PageTovari">
 
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition />
+            <RowDefinition Height="520"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        
+ 
         <StackPanel Grid.Row="0">
-            <ListView>
+            <ListView Name="lvTovari" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel HorizontalAlignment="Center"></WrapPanel>
@@ -24,7 +24,14 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        
+                        <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="#445c93">
+                            <Grid Width="300" Height="200">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding tovar}" FontSize="18"/>
+                                    
+                                </StackPanel>
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

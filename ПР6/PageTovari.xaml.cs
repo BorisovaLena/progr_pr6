@@ -20,9 +20,12 @@ namespace ПР6
     /// </summary>
     public partial class PageTovari : Page
     {
+        List<Table_Tovari> tovar = ClassBase.Base.Table_Tovari.ToList();
+        
         public PageTovari()
         {
             InitializeComponent();
+            lvTovari.ItemsSource = tovar;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
