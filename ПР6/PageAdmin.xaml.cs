@@ -23,6 +23,7 @@ namespace ПР6
         public PageAdmin()
         {
             InitializeComponent();
+            dgUsers.ItemsSource = ClassBase.Base.Table_Sotrudniki.ToList();
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
@@ -60,7 +61,27 @@ namespace ПР6
             {
                  dgUsers.ItemsSource = ClassBase.Base.Table_Sotrudniki.Where(z => z.name == tbName.Text).ToList();
             }
+        }
 
+        private void surname_Click(object sender, RoutedEventArgs e)
+        {
+            spSurname.Visibility = Visibility.Visible;
+            spName.Visibility = Visibility.Collapsed;
+            btnSearch.Visibility = Visibility.Visible;
+        }
+
+        private void name_Click(object sender, RoutedEventArgs e)
+        {
+            spSurname.Visibility = Visibility.Collapsed;
+            spName.Visibility = Visibility.Visible;
+            btnSearch.Visibility = Visibility.Visible;
+        }
+
+        private void no_Click(object sender, RoutedEventArgs e)
+        {
+            spName.Visibility = Visibility.Collapsed;
+            spSurname.Visibility = Visibility.Collapsed;
+            btnSearch.Visibility = Visibility.Collapsed;
         }
     }
 }
