@@ -16,23 +16,18 @@ using System.Windows.Shapes;
 namespace ПР6
 {
     /// <summary>
-    /// Логика взаимодействия для PageAdminMenu.xaml
+    /// Логика взаимодействия для PageTovari.xaml
     /// </summary>
-    public partial class PageAdminMenu : Page
+    public partial class PageTovari : Page
     {
-        public PageAdminMenu()
+        public PageTovari()
         {
             InitializeComponent();
         }
 
-        private void btnSelectUser_Click(object sender, RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.mainFrame.Navigate(new PageAdmin());
-        }
-
-        private void btnSelectTovar_Click(object sender, RoutedEventArgs e)
-        {
-            ClassFrame.mainFrame.Navigate(new PageTovari());
+            ClassFrame.mainFrame.Navigate(new PageAdminMenu());
         }
     }
 }

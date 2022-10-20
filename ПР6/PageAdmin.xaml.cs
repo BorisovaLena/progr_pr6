@@ -83,5 +83,10 @@ namespace ПР6
             spSurname.Visibility = Visibility.Collapsed;
             btnSearch.Visibility = Visibility.Collapsed;
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.mainFrame.Navigate(new PageAdminMenu());
+        }
     }
 }

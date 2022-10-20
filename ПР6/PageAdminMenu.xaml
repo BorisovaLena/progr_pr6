@@ -10,8 +10,9 @@
 
     <Grid>
         <StackPanel>
-            <StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <Button Name="btnSelectUser" Content="Пользователи" Click="btnSelectUser_Click"  Template="{StaticResource CTButon3}"/>
+                <Button Name="btnSelectTovar" Content="Товары" Click="btnSelectTovar_Click" Template="{StaticResource CTButon3}"/>
             </StackPanel>
         </StackPanel>
         

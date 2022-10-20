@@ -9,7 +9,11 @@
       Title="PageAdmin">
 
     <Grid>
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Name="btnSelect" Content="Исходная" Click="btnSelect_Click" Template="{StaticResource CTButon3}"/>
                 <Button Name="btnSortAsc" Content="По возрастанию" Click="btnSortAsc_Click" Template="{StaticResource CTButon3}"/>
@@ -35,8 +39,8 @@
                 </StackPanel>
                 <Button Name="btnSearch" Content="Найти" Click="btnSearch_Click" Visibility="Collapsed" Template="{StaticResource CTButon4}"/>
             </StackPanel>
-            
-            
+
+
             <StackPanel>
                 <DataGrid Name="dgUsers" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="14" Margin="0,10,0,0" >
                     <DataGrid.Columns>
@@ -48,13 +52,14 @@
                         <DataGridTextColumn Header="Логин" Width="*" Binding="{Binding login}"/>
                         <DataGridTextColumn Header="Роль" Width="*" Binding="{Binding Table_Roles.role}"/>
                     </DataGrid.Columns>
-                    
+
                 </DataGrid>
-                
+
             </StackPanel>
-            
         </StackPanel>
-      
+        <StackPanel Grid.Row="1">
+            <Button Name="Back" Content="Назад" HorizontalAlignment="Right" Template="{StaticResource CTButon}" Click="Back_Click"/>
+        </StackPanel>
         
     </Grid>
 </Page>

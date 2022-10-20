@@ -82,6 +82,9 @@
     <Compile Include="PageReg.xaml.cs">
       <DependentUpon>PageReg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageTovari.xaml.cs">
+      <DependentUpon>PageTovari.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageUser.xaml.cs">
       <DependentUpon>PageUser.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageReg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageTovari.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
