@@ -25,12 +25,38 @@ namespace ПР6
         public PageTovari()
         {
             InitializeComponent();
-            lvTovari.ItemsSource = tovar;
+            listProd.ItemsSource = ClassBase.Base.Table_Tovari.ToList();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             ClassFrame.mainFrame.Navigate(new PageAdminMenu());
+        }
+        private void tbProviders_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+            int index = Convert.ToInt32(tb.Uid);
+            List<Table_Postavki> providers = ClassBase.Base.Table_Postavki.Where(z => z.idTovar == index).ToList();
+            string str = "";
+            foreach (Table_Postavki tp in providers)
+            {
+                str += tp.Table_Providers.title + ", ";
+            }
+
+            tb.Text = "Поставщики: " + str.Substring(0, str.Length - 2);
+        }
+
+        private void tbStoimost_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+            int index = Convert.ToInt32(tb.Uid);
+            List<Table_Pokupki> tp = ClassBase.Base.Table_Pokupki.Where(z => z.idTovar == index).ToList();
+            double stoimost = 0;
+            foreach (Table_Pokupki tpoc in tp)
+            {
+                stoimost += Convert.ToDouble(tpoc.stoimost);
+            }
+            tb.Text = "Было продано товара на сумму: " + stoimost.ToString() + " руб.";
         }
     }
 }
