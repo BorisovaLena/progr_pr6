@@ -18,7 +18,7 @@ namespace ПР6
         public System.DateTime date { get; set; }
         public int idTovar { get; set; }
         public int idProvider { get; set; }
-        public string kol { get; set; }
+        public int kol { get; set; }
         public double count { get; set; }
         public double stoimost { get; set; }
     

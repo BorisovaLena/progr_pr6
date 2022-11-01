@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1c20e122f01f4f8fa59e6ddb145e67fb" Name="Diagram1" ZoomLevel="85">
-        <EntityTypeShape EntityType="Model.Table_Genders" Width="1.5" PointX="2.75" PointY="3.5" />
-        <EntityTypeShape EntityType="Model.Table_Pasporta" Width="1.5" PointX="6.75" PointY="0.875" />
-        <EntityTypeShape EntityType="Model.Table_Pokupki" Width="1.5" PointX="6.75" PointY="3.375" />
-        <EntityTypeShape EntityType="Model.Table_Postavki" Width="1.5" PointX="10.875" PointY="3.875" />
-        <EntityTypeShape EntityType="Model.Table_Providers" Width="1.5" PointX="8.75" PointY="5.5" />
-        <EntityTypeShape EntityType="Model.Table_Roles" Width="1.5" PointX="2.75" PointY="0.5" />
-        <EntityTypeShape EntityType="Model.Table_Sotrudniki" Width="1.5" PointX="4.625" PointY="0.875" />
-        <EntityTypeShape EntityType="Model.Table_Tovari" Width="1.5" PointX="9.5" PointY="1.125" />
+      <Diagram DiagramId="1c20e122f01f4f8fa59e6ddb145e67fb" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="Model.Table_Genders" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="Model.Table_Pasporta" Width="1.5" PointX="5.25" PointY="5.125" />
+        <EntityTypeShape EntityType="Model.Table_Pokupki" Width="1.5" PointX="8.25" PointY="4.75" />
+        <EntityTypeShape EntityType="Model.Table_Postavki" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.Table_Providers" Width="1.5" PointX="6" PointY="9.125" />
+        <EntityTypeShape EntityType="Model.Table_Roles" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="Model.Table_Sotrudniki" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="Model.Table_Tovari" Width="1.5" PointX="6" PointY="2" />
         <AssociationConnector Association="Model.FK_Sotrudniki_Pol" />
         <AssociationConnector Association="Model.FK_Table_Pasporta_Table_Sotrudniki" />
         <AssociationConnector Association="Model.FK_Pokupki_Sotrudniki" />

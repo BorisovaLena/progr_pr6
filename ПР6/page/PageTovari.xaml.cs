@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ПР6.page;
 
 namespace ПР6
 {
@@ -28,10 +29,7 @@ namespace ПР6
             listProd.ItemsSource = ClassBase.Base.Table_Tovari.ToList();
         }
 
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            ClassFrame.mainFrame.Navigate(new PageAdminMenu());
-        }
+      
         private void tbProviders_Loaded(object sender, RoutedEventArgs e)
         {
             TextBlock tb = (TextBlock)sender;
@@ -57,6 +55,15 @@ namespace ПР6
                 stoimost += Convert.ToDouble(tpoc.stoimost);
             }
             tb.Text = "Было продано товара на сумму: " + stoimost.ToString() + " руб.";
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.mainFrame.Navigate(new PageAddUpdate());
+        }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.mainFrame.Navigate(new PageAdminMenu());
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿<Page x:Class="ПР6.page.PageAddUpdate"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ПР6.page"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="PageAddUpdate">
 
     <Grid>
@@ -33,21 +35,29 @@
                     <GroupBox Header="Цена">
                         <TextBox Name="AUcount"/>
                     </GroupBox>
-                    <GroupBox Header="Стоимость">
-                        <TextBox Name="AUstoimost"/>
-                    </GroupBox>
+
                 </StackPanel>
             </StackPanel>
-            <StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <GroupBox Header="Выберите поставщика">
-                    <ComboBox Name="cmbProvider"></ComboBox>
+                    <ComboBox Name="cmbProvider" Width="300"></ComboBox>
+                </GroupBox>
+                <Button Name="btnAddProvider" Content="Новый поставщик" Template="{StaticResource CTButon}" Click="btnAddProvider_Click"/>
+            </StackPanel>
+            <StackPanel Name="spNewProvider" Visibility="Collapsed">
+                <TextBlock Text="Добавление нового поставщика" Style="{StaticResource TBlockZag}"/>
+                <GroupBox Header="Название компании">
+                    <TextBox Name="AUprovider"/>
+                </GroupBox>
+                <GroupBox Header="Представитель">
+                    <TextBox Name="AUpredstavitel"/>
+                </GroupBox>
+                <GroupBox Header="Номер телефона">
+                    <TextBox Name="AUnumber"/>
                 </GroupBox>
             </StackPanel>
             <Button Name="btnAdd" Content="Добавить" Click="btnAdd_Click" Template="{StaticResource CTButon}"/>
-
-
         </StackPanel>
-
         <StackPanel Grid.Row="1">
             <Button Name="Back" Content="Назад" HorizontalAlignment="Right" Template="{StaticResource CTButon}" Click="Back_Click"/>
         </StackPanel>
