@@ -25,19 +25,20 @@
                 <DatePicker Name="AUdate" FontSize="18" Width="200" Margin="5,0,0,0"></DatePicker>
             </StackPanel>
             <StackPanel>
-                <GroupBox Header="Название">
+                <GroupBox Header="Товар">
                     <TextBox Name="AUtovar"/>
                 </GroupBox>
-                <StackPanel Orientation="Horizontal">
+                <Button Name="btnNewTovar"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
                     <GroupBox Header="Количество">
                         <TextBox Name="AUkol"/>
                     </GroupBox>
                     <GroupBox Header="Цена">
                         <TextBox Name="AUcount"/>
                     </GroupBox>
-
                 </StackPanel>
-            </StackPanel>
+           
             <StackPanel Orientation="Horizontal">
                 <GroupBox Header="Выберите поставщика">
                     <ComboBox Name="cmbProvider" Width="300"></ComboBox>

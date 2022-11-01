@@ -43,7 +43,6 @@ namespace ПР6.page
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            bool q = false; //добавляется ли новый поставщик
 
             if (add==true)
             {

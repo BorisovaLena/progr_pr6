@@ -14,9 +14,8 @@
             <RowDefinition Height="8*"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-
         <StackPanel Grid.Row="0">
-            <ListView Name="listProd" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView Name="listProd">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel HorizontalAlignment="Center"></WrapPanel>
@@ -32,13 +31,13 @@
                                     <TextBlock Text="{Binding kol, StringFormat=Количество: {0}}"/>
                                     <TextBlock Width="300" Name="tbProviders" Uid="{Binding idTovar}" Loaded="tbProviders_Loaded"/>
                                     <TextBlock Uid="{Binding idTovar}" Name="tbStoimost" Loaded="tbStoimost_Loaded"/>
+                                    <Button Name="btnDelete" Uid="{Binding idTovar}" Content="Удалить" Click="btnDelete_Click"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </StackPanel>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">

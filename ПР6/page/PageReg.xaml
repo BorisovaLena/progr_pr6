@@ -9,7 +9,7 @@
       d:DesignHeight="600" d:DesignWidth="800"
       Title="PageReg">
 
-    <Grid >
+    <Grid>
         <StackPanel>
             <StackPanel>
                 <TextBlock Text="Регистрация" Style="{StaticResource TBlockZag}"/>
