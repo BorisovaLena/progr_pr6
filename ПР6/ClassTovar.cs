@@ -22,7 +22,13 @@ namespace ПР6
                     return Brushes.White;
                 }
             }
-
+        }
+        public string CountTov
+        {
+            get
+            {
+                return string.Format("Цена: {0:C2}", count);
+            }
         }
     }
 }

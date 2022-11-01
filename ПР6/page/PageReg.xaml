@@ -60,7 +60,7 @@
                     <PasswordBox Name="regPassword"/>
                 </GroupBox>
             </StackPanel>
-            <Button Name="btnReg" Content="Зарегистрироваться" Click="btnReg_Click" Template="{StaticResource CTButon2}" Width="200" Height="40"/>
+            <Button Name="btnReg" Content="Зарегистрироваться" Click="btnReg_Click" Template="{StaticResource CTButon}"/>
         </StackPanel>
     </Grid>
 </Page>

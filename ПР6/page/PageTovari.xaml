@@ -28,7 +28,7 @@
                             <Grid Width="300" Height="200">
                                 <StackPanel>
                                     <TextBlock Text="{Binding tovar}"/>
-                                    <TextBlock Text="{Binding count, StringFormat=Цена: {0}}"/>
+                                    <TextBlock Text="{Binding CountTov}"/>
                                     <TextBlock Text="{Binding kol, StringFormat=Количество: {0}}"/>
                                     <TextBlock Width="300" Name="tbProviders" Uid="{Binding idTovar}" Loaded="tbProviders_Loaded"/>
                                     <TextBlock Uid="{Binding idTovar}" Name="tbStoimost" Loaded="tbStoimost_Loaded"/>
