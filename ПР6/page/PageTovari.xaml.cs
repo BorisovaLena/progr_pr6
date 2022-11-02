@@ -54,7 +54,8 @@ namespace ПР6
             {
                 stoimost += Convert.ToDouble(tpoc.stoimost);
             }
-            tb.Text = "Было продано товара на сумму: " + stoimost.ToString() + " руб.";
+            
+            tb.Text = string.Format("Продано на сумму: {0:C2}", stoimost);
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)

@@ -90,6 +90,7 @@ namespace ПР6.page
             }
             ClassBase.Base.SaveChanges();
             MessageBox.Show("Успешное добавление записи!!!");
+            ClassFrame.mainFrame.Navigate(new PageTovari());
         }
 
         private void btnAddProvider_Click(object sender, RoutedEventArgs e)

@@ -28,7 +28,6 @@
                 <GroupBox Header="Товар">
                     <TextBox Name="AUtovar"/>
                 </GroupBox>
-                <Button Name="btnNewTovar"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                     <GroupBox Header="Количество">

@@ -13,7 +13,7 @@ namespace ПР6
         {
             get
             {
-                if (kol == 0)
+                if (kol == 0) //если количество товара равно 0
                 {
                     return Brushes.Coral;
                 }
@@ -28,6 +28,13 @@ namespace ПР6
             get
             {
                 return string.Format("Цена: {0:C2}", count);
+            }
+        }
+        public string KolTov
+        {
+            get
+            {
+                return "Количество: " + kol + " шт";
             }
         }
     }
