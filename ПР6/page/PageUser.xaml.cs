@@ -20,9 +20,22 @@ namespace ПР6
     /// </summary>
     public partial class PageUser : Page
     {
-        public PageUser()
+        public PageUser(Table_Sotrudniki user)
         {
             InitializeComponent();
+            Surname.Text = user.surname;
+            Name.Text = user.name;
+            Otch.Text = user.otchestvo;
+            Birthday.SelectedDate = user.birthday;
+            Seria.Text = Convert.ToString(user.Table_Pasporta.seria);
+            Number.Text = Convert.ToString(user.Table_Pasporta.number);
+            Vidan.Text = Convert.ToString(user.Table_Pasporta.vidan);
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            WindowUpdateUser window = new WindowUpdateUser();
+
         }
     }
 }

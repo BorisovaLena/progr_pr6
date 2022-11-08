@@ -43,7 +43,7 @@ namespace ПР6
                         break;
                     case 1:
                         MessageBox.Show("Здравствуйте, пользователь!");
-                        ClassFrame.mainFrame.Navigate(new PageUser());
+                        ClassFrame.mainFrame.Navigate(new PageUser(sotr));
                         break;
                     default:
                         
