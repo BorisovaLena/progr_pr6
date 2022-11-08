@@ -28,12 +28,31 @@ namespace ПР6.page
             fillingLists();
             add = true;
         }
-
+        public PageAddUpdate(Table_Tovari tovar)
+        {
+            InitializeComponent();
+            fillingLists();
+            TOVAR = tovar;
+            add = false;
+            AUdate.SelectedDate = ClassBase.Base.Table_Postavki.FirstOrDefault(z => z.idTovar == tovar.idTovar).date;
+            AUtovar.Text = tovar.tovar;
+            AUkol.Text = Convert.ToString(tovar.kol);
+            AUcount.Text = Convert.ToString(tovar.count);
+            List<Table_Postavki> TP= ClassBase.Base.Table_Postavki.Where(z => z.idTovar == tovar.idTovar).ToList();
+            
+            foreach(Table_Providers provider in lbProviders.Items)
+            {
+                if(TP.FirstOrDefault(z=> z.idProvider == provider.idProvider)!=null)
+                {
+                    lbProviders.SelectedItems.Add(provider);
+                }
+            }
+        }
         public void fillingLists()
         {
-            cmbProvider.ItemsSource = ClassBase.Base.Table_Providers.ToList();
-            cmbProvider.SelectedValuePath = "idProvider";
-            cmbProvider.DisplayMemberPath = "title";
+            lbProviders.ItemsSource = ClassBase.Base.Table_Providers.ToList();
+            lbProviders.SelectedValuePath = "idProvider";
+            lbProviders.DisplayMemberPath = "title";
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -52,9 +71,13 @@ namespace ПР6.page
             TOVAR.tovar = AUtovar.Text;
             TOVAR.count = Convert.ToDouble(AUcount.Text);
             TOVAR.kol = Convert.ToInt32(AUkol.Text);
-            ClassBase.Base.Table_Tovari.Add(TOVAR);
 
-            if (cmbProvider.SelectedValue == null)
+            if(add == true)
+            {
+                ClassBase.Base.Table_Tovari.Add(TOVAR);
+            }
+
+            if (lbProviders.SelectedValue == null)
             {
                 Table_Providers provider = new Table_Providers()
                 {
@@ -62,7 +85,10 @@ namespace ПР6.page
                     predstavitel = AUpredstavitel.Text,
                     phoneNumber = AUnumber.Text
                 };
-                ClassBase.Base.Table_Providers.Add(provider);
+                if (add == true)
+                {
+                    ClassBase.Base.Table_Tovari.Add(TOVAR);
+                }
 
                 Table_Postavki postavka = new Table_Postavki()
                 {
@@ -73,20 +99,42 @@ namespace ПР6.page
                     count = Convert.ToInt32(AUcount.Text),
                     stoimost = TOVAR.count * TOVAR.kol
                 };
-                ClassBase.Base.Table_Postavki.Add(postavka);
+
+                if (add == true)
+                {
+                    ClassBase.Base.Table_Tovari.Add(TOVAR);
+                }
             }
             else
             {
-                Table_Postavki postavka = new Table_Postavki()
+                List<Table_Postavki> TP = ClassBase.Base.Table_Postavki.Where(z => TOVAR.idTovar == z.idTovar).ToList();
+
+                if (TP.Count > 0)
                 {
-                    date = Convert.ToDateTime(AUdate.SelectedDate),
-                    idTovar = TOVAR.idTovar,
-                    idProvider = cmbProvider.SelectedIndex+1,
-                    kol = Convert.ToInt32(AUkol.Text),
-                    count = Convert.ToInt32(AUcount.Text),
-                    stoimost = TOVAR.count * TOVAR.kol
-                };
-                ClassBase.Base.Table_Postavki.Add(postavka);
+                    foreach (Table_Postavki p in TP)
+                    {
+                        ClassBase.Base.Table_Postavki.Remove(p);
+                    }
+                }
+
+                foreach (Table_Providers p in lbProviders.SelectedItems)
+                {
+                    Table_Postavki postavka = new Table_Postavki()
+                    {
+                        date = Convert.ToDateTime(AUdate.SelectedDate),
+                        idTovar = TOVAR.idTovar,
+                        idProvider = p.idProvider,
+                        kol = Convert.ToInt32(AUkol.Text),
+                        count = Convert.ToInt32(AUcount.Text),
+                        stoimost = TOVAR.count * TOVAR.kol
+                    };
+                    ClassBase.Base.Table_Postavki.Add(postavka);
+                }
+               
+                if (add == true)
+                {
+                    ClassBase.Base.Table_Tovari.Add(TOVAR);
+                }
             }
             ClassBase.Base.SaveChanges();
             MessageBox.Show("Успешное добавление записи!!!");

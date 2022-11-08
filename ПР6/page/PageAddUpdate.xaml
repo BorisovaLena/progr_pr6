@@ -18,7 +18,7 @@
 
         <StackPanel Grid.Row="0">
             <StackPanel>
-                <TextBlock Text="Новый товар" Style="{StaticResource TBlockZag}"/>
+                <TextBlock Text="Поставка" Style="{StaticResource TBlockZag}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Дата поставки" Style="{StaticResource TBlock}"/>
@@ -39,9 +39,7 @@
                 </StackPanel>
            
             <StackPanel Orientation="Horizontal">
-                <GroupBox Header="Выберите поставщика">
-                    <ComboBox Name="cmbProvider" Width="300"></ComboBox>
-                </GroupBox>
+                <ListBox Name="lbProviders" SelectionMode="Multiple"/>
                 <Button Name="btnAddProvider" Content="Новый поставщик" Template="{StaticResource CTButon}" Click="btnAddProvider_Click"/>
             </StackPanel>
             <StackPanel Name="spNewProvider" Visibility="Collapsed">

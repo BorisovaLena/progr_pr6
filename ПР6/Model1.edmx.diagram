@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="Model.Table_Pasporta" Width="1.5" PointX="5.25" PointY="5.125" />
         <EntityTypeShape EntityType="Model.Table_Pokupki" Width="1.5" PointX="8.25" PointY="4.75" />
         <EntityTypeShape EntityType="Model.Table_Postavki" Width="1.5" PointX="8.25" PointY="0.75" />
-        <EntityTypeShape EntityType="Model.Table_Providers" Width="1.5" PointX="6" PointY="9.125" />
+        <EntityTypeShape EntityType="Model.Table_Providers" Width="1.5" PointX="10.5" PointY="3.75" />
         <EntityTypeShape EntityType="Model.Table_Roles" Width="1.5" PointX="0.75" PointY="5.375" />
         <EntityTypeShape EntityType="Model.Table_Sotrudniki" Width="1.5" PointX="3" PointY="4.375" />
         <EntityTypeShape EntityType="Model.Table_Tovari" Width="1.5" PointX="6" PointY="2" />

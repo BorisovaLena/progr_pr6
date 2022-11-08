@@ -29,7 +29,10 @@
                                 <TextBlock Text="{Binding KolTov}" Style="{StaticResource TBlock}"/>
                                 <TextBlock Width="290" TextWrapping="Wrap" Name="tbProviders" Uid="{Binding idTovar}" Loaded="tbProviders_Loaded" Style="{StaticResource TBlock}"/>
                                 <TextBlock Uid="{Binding idTovar}" Name="tbStoimost" Loaded="tbStoimost_Loaded" Style="{StaticResource TBlock}"/>
-                                <Button Name="btnDelete" Uid="{Binding idTovar}" Content="Удалить" Click="btnDelete_Click"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="btnDelete" Uid="{Binding idTovar}" Content="Удалить" Click="btnDelete_Click" Template="{StaticResource CTButon2}"/>
+                                    <Button Name="btnUpdate" Uid="{Binding idTovar}" Content="Редактировать" Click="btnUpdate_Click" Template="{StaticResource CTButon2}"/>
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
                     </Border>

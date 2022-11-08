@@ -79,5 +79,15 @@ namespace ПР6
 
             ClassFrame.mainFrame.Navigate(new PageTovari());
         }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            int index = Convert.ToInt32(btn.Uid);
+
+            Table_Tovari tovar = ClassBase.Base.Table_Tovari.FirstOrDefault(z => z.idTovar == index);
+
+            ClassFrame.mainFrame.Navigate(new PageAddUpdate(tovar));
+        }
     }
 }
