@@ -52,7 +52,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button Name="btnUpdate" Content="Редактировать данные" Click="btnUpdate_Click"/>
-                    <Button Name="btnLogPas" Content="Изменить логин и пароль"/>
+                    <Button Name="btnLogPas" Content="Изменить логин и пароль" Click="btnLogPas_Click"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

@@ -92,6 +92,9 @@
     <Compile Include="page\PageUser.xaml.cs">
       <DependentUpon>PageUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="page\WindowUpdateLodinPassword.xaml.cs">
+      <DependentUpon>WindowUpdateLodinPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Table_Genders.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -116,7 +119,7 @@
     <Compile Include="Table_Tovari.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="WindowUpdateUser.xaml.cs">
+    <Compile Include="page\WindowUpdateUser.xaml.cs">
       <DependentUpon>WindowUpdateUser.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -164,7 +167,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowUpdateUser.xaml">
+    <Page Include="page\WindowUpdateLodinPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="page\WindowUpdateUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

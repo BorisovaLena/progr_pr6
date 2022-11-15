@@ -10,19 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ПР6.page;
 
 namespace ПР6
 {
     /// <summary>
-    /// Логика взаимодействия для PageUser.xaml
+    /// Логика взаимодействия для WindowUpdateUser.xaml
     /// </summary>
-    public partial class PageUser : Page
+    public partial class WindowUpdateUser : Window
     {
         Table_Sotrudniki user;
-        public PageUser(Table_Sotrudniki user)
+        public WindowUpdateUser(Table_Sotrudniki user)
         {
             InitializeComponent();
             this.user = user;
@@ -35,18 +33,18 @@ namespace ПР6
             Vidan.Text = user.Table_Pasporta.vidan;
         }
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            WindowUpdateUser window = new WindowUpdateUser(user);
-            window.ShowDialog();
-            ClassFrame.mainFrame.Navigate(new PageUser(user));
-        }
-
-        private void btnLogPas_Click(object sender, RoutedEventArgs e)
-        {
-            WindowUpdateLodinPassword window = new WindowUpdateLodinPassword(user);
-            window.ShowDialog();
-            ClassFrame.mainFrame.Navigate(new PageUser(user));
+            user.surname = Surname.Text;
+            user.name = Name.Text;
+            user.otchestvo = Otch.Text;
+            user.birthday = Convert.ToDateTime(Birthday.SelectedDate);
+            user.Table_Pasporta.seria = Convert.ToInt32(Seria.Text);
+            user.Table_Pasporta.number = Convert.ToInt32(Number.Text);
+            user.Table_Pasporta.vidan = Vidan.Text;
+            ClassBase.Base.SaveChanges();
+            MessageBox.Show("Успешное изменение данных!!!");
+            this.Close();
         }
     }
 }

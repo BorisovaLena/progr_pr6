@@ -1,0 +1,50 @@
+﻿<Window x:Class="ПР6.WindowUpdateUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ПР6"
+        mc:Ignorable="d"
+        Title="WindowUpdateUser" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Изменение данных" Style="{StaticResource TBlockZag}"/>
+            <StackPanel>
+                <GroupBox Header="Фамилия">
+                    <TextBox Name="Surname"/>
+                </GroupBox>
+                <GroupBox Header="Имя">
+                    <TextBox Name="Name"/>
+                </GroupBox>
+                <GroupBox Header="Отчество">
+                    <TextBox Name="Otch"/>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Дата рождения" Style="{StaticResource TBlock}"/>
+                <DatePicker Name="Birthday" FontSize="18" Width="200" Margin="5,0,0,0"></DatePicker>
+            </StackPanel>
+            <StackPanel>
+                <GroupBox Header="Данные паспорта">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Серия"/>
+                            <TextBox Name="Seria" Width="100" MaxLength="4" Margin="10,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Номер"/>
+                            <TextBox Name="Number" Width="100" MaxLength="6" Margin="10,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Кем выдан"/>
+                            <TextBox Name="Vidan" Width="200" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel>
+                <Button Name="btnSave" Content="Сохранить" Click="btnSave_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
