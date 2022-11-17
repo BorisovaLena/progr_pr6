@@ -34,5 +34,10 @@ namespace ПР6
         {
             ClassFrame.mainFrame.Navigate(new PageTovari());
         }
+
+        private void btnLC_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.mainFrame.Navigate(new PageAdmin());
+        }
     }
 }
