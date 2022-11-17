@@ -7,33 +7,38 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="PageUser">
-
+    
+    
     <Grid>
-        <ScrollViewer>
+        <StackPanel>
             <StackPanel>
-                <StackPanel>
-                    <TextBlock Text="Личный кабинет" Style="{StaticResource TBlockZag}"/>
+                <TextBlock Text="Личный кабинет" Style="{StaticResource TBlockZag}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="\image\photo.png" Margin="20" Width="150" HorizontalAlignment="Left"/>
+                <StackPanel VerticalAlignment="Center">
+                    <Button Name="addPhoto" Content="Добавить фото" Template="{StaticResource CTButon3}"/>
+                    <Button Name="updatePhoto" Content="Изменить фото" Template="{StaticResource CTButon3}"/>
                 </StackPanel>
-                <StackPanel>
-                    <Image Source="\image\photo.png" Margin="10" Width="150"/>
-                </StackPanel>
-                <StackPanel>
-                    <GroupBox Header="Фамилия">
-                        <TextBox Name="Surname"/>
-                    </GroupBox>
-                    <GroupBox Header="Имя">
-                        <TextBox Name="Name"/>
-                    </GroupBox>
-                    <GroupBox Header="Отчество">
-                        <TextBox Name="Otch"/>
-                    </GroupBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Дата рождения" Style="{StaticResource TBlock}"/>
-                    <DatePicker Name="Birthday" FontSize="18" Width="200" Margin="5,0,0,0"></DatePicker>
-                </StackPanel>
-                <StackPanel>
-                    <GroupBox Header="Данные паспорта">
+            </StackPanel>
+            <StackPanel Width="370" HorizontalAlignment="Left">
+                <GroupBox Header="Фамилия">
+                    <TextBox Name="Surname"/>
+                </GroupBox>
+                <GroupBox Header="Имя">
+                    <TextBox Name="Name"/>
+                </GroupBox>
+                <GroupBox Header="Отчество">
+                    <TextBox Name="Otch"/>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Дата рождения" Style="{StaticResource TBlock}"/>
+                <DatePicker Name="Birthday" FontSize="18" Width="200" Margin="5,0,0,0"></DatePicker>
+            </StackPanel>
+            <StackPanel>
+                <GroupBox Header="Данные паспорта">
+                    <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Серия"/>
@@ -43,18 +48,18 @@
                                 <TextBlock Text="Номер"/>
                                 <TextBox Name="Number" Width="100" MaxLength="6" Margin="10,0"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Кем выдан"/>
-                                <TextBox Name="Vidan" Width="200" Margin="10,0,0,0"/>
-                            </StackPanel>
                         </StackPanel>
-                    </GroupBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button Name="btnUpdate" Content="Редактировать данные" Click="btnUpdate_Click"/>
-                    <Button Name="btnLogPas" Content="Изменить логин и пароль" Click="btnLogPas_Click"/>
-                </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Кем выдан" Margin="0,10"/>
+                            <TextBox Name="Vidan" Width="200" Margin="10,10"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
             </StackPanel>
-        </ScrollViewer>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="btnUpdate" Content="Редактировать данные" Click="btnUpdate_Click" Template="{StaticResource CTButon5}" />
+                <Button Name="btnLogPas" Content="Изменить логин и пароль" Click="btnLogPas_Click" Template="{StaticResource CTButon5}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

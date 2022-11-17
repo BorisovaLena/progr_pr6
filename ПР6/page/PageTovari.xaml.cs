@@ -21,15 +21,16 @@ namespace ПР6
     /// </summary>
     public partial class PageTovari : Page
     {
+        Table_Sotrudniki user;
         List<Table_Tovari> tovar = ClassBase.Base.Table_Tovari.ToList();
-        
-        public PageTovari()
+        public PageTovari(Table_Sotrudniki user)
         {
             InitializeComponent();
             listProd.ItemsSource = ClassBase.Base.Table_Tovari.ToList();
+            this.user = user;
         }
 
-      
+
         private void tbProviders_Loaded(object sender, RoutedEventArgs e)
         {
             TextBlock tb = (TextBlock)sender;
@@ -60,11 +61,11 @@ namespace ПР6
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.mainFrame.Navigate(new PageAddUpdate());
+            ClassFrame.mainFrame.Navigate(new PageAddUpdate(tovar, user));
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.mainFrame.Navigate(new PageAdminMenu());
+            ClassFrame.mainFrame.Navigate(new PageAdminMenu(user));
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -77,7 +78,7 @@ namespace ПР6
             ClassBase.Base.Table_Tovari.Remove(tovar);
             ClassBase.Base.SaveChanges();
 
-            ClassFrame.mainFrame.Navigate(new PageTovari());
+            ClassFrame.mainFrame.Navigate(new PageTovari(user));
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -87,7 +88,7 @@ namespace ПР6
 
             Table_Tovari tovar = ClassBase.Base.Table_Tovari.FirstOrDefault(z => z.idTovar == index);
 
-            ClassFrame.mainFrame.Navigate(new PageAddUpdate(tovar));
+            ClassFrame.mainFrame.Navigate(new PageAddUpdate(tovar, user));
         }
     }
 }

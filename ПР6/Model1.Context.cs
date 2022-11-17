@@ -25,6 +25,7 @@ namespace ПР6
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Photos> Photos { get; set; }
         public virtual DbSet<Table_Genders> Table_Genders { get; set; }
         public virtual DbSet<Table_Pasporta> Table_Pasporta { get; set; }
         public virtual DbSet<Table_Pokupki> Table_Pokupki { get; set; }

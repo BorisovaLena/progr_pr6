@@ -20,10 +20,12 @@ namespace ПР6
     /// </summary>
     public partial class PageAdmin : Page
     {
-        public PageAdmin()
+        Table_Sotrudniki user;
+        public PageAdmin(Table_Sotrudniki user)
         {
             InitializeComponent();
             dgUsers.ItemsSource = ClassBase.Base.Table_Sotrudniki.ToList();
+            this.user = user;
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
@@ -86,7 +88,7 @@ namespace ПР6
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.mainFrame.Navigate(new PageAdminMenu());
+            ClassFrame.mainFrame.Navigate(new PageAdminMenu(user));
         }
     }
 }

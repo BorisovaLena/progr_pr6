@@ -20,20 +20,26 @@ namespace ПР6.page
     /// </summary>
     public partial class PageAddUpdate : Page
     {
+        Table_Sotrudniki user;
         Table_Tovari TOVAR;
         bool add;
-        public PageAddUpdate()
+        private List<Table_Tovari> tovar;
+
+        public PageAddUpdate(Table_Sotrudniki user)
         {
             InitializeComponent();
             fillingLists();
             add = true;
+            this.user = user;
         }
-        public PageAddUpdate(Table_Tovari tovar)
+        public PageAddUpdate(Table_Tovari tovar, Table_Sotrudniki user)
         {
             InitializeComponent();
+            
             fillingLists();
             TOVAR = tovar;
             add = false;
+            this.user = user;
             AUdate.SelectedDate = ClassBase.Base.Table_Postavki.FirstOrDefault(z => z.idTovar == tovar.idTovar).date;
             AUtovar.Text = tovar.tovar;
             AUkol.Text = Convert.ToString(tovar.kol);
@@ -48,6 +54,13 @@ namespace ПР6.page
                 }
             }
         }
+
+        public PageAddUpdate(List<Table_Tovari> tovar, Table_Sotrudniki user)
+        {
+            this.tovar = tovar;
+            this.user = user;
+        }
+
         public void fillingLists()
         {
             lbProviders.ItemsSource = ClassBase.Base.Table_Providers.ToList();
@@ -57,7 +70,7 @@ namespace ПР6.page
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.mainFrame.Navigate(new PageTovari());
+            ClassFrame.mainFrame.Navigate(new PageTovari(user));
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -138,7 +151,7 @@ namespace ПР6.page
             }
             ClassBase.Base.SaveChanges();
             MessageBox.Show("Успешное добавление записи!!!");
-            ClassFrame.mainFrame.Navigate(new PageTovari());
+            ClassFrame.mainFrame.Navigate(new PageTovari(user));
         }
 
         private void btnAddProvider_Click(object sender, RoutedEventArgs e)

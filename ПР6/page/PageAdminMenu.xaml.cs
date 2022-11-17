@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ПР6.page;
 
 namespace ПР6
 {
@@ -20,24 +21,47 @@ namespace ПР6
     /// </summary>
     public partial class PageAdminMenu : Page
     {
-        public PageAdminMenu()
+        Table_Sotrudniki user;
+        public PageAdminMenu(Table_Sotrudniki user)
         {
             InitializeComponent();
+            this.user = user;
+            Surname.Text = user.surname;
+            Name.Text = user.name;
+            Otch.Text = user.otchestvo;
+            Birthday.SelectedDate = user.birthday;
+            Seria.Text = Convert.ToString(user.Table_Pasporta.seria);
+            Number.Text = Convert.ToString(user.Table_Pasporta.number);
+            Vidan.Text = user.Table_Pasporta.vidan;
         }
 
         private void btnSelectUser_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.mainFrame.Navigate(new PageAdmin());
+            ClassFrame.mainFrame.Navigate(new PageAdmin(user));
         }
 
         private void btnSelectTovar_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.mainFrame.Navigate(new PageTovari());
+            ClassFrame.mainFrame.Navigate(new PageTovari(user));
         }
 
-        private void btnLC_Click(object sender, RoutedEventArgs e)
+        //private void btnLC_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ClassFrame.mainFrame.Navigate(new PageAdmin(user));
+        //}
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.mainFrame.Navigate(new PageAdmin());
+            WindowUpdateUser window = new WindowUpdateUser(user);
+            window.ShowDialog();
+            ClassFrame.mainFrame.Navigate(new PageAdminMenu(user));
+        }
+
+        private void btnLogPas_Click(object sender, RoutedEventArgs e)
+        {
+            WindowUpdateLodinPassword window = new WindowUpdateLodinPassword(user);
+            window.ShowDialog();
+            ClassFrame.mainFrame.Navigate(new PageAdminMenu(user));
         }
     }
 }

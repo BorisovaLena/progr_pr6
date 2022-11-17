@@ -95,6 +95,9 @@
     <Compile Include="page\WindowUpdateLodinPassword.xaml.cs">
       <DependentUpon>WindowUpdateLodinPassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Photos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Table_Genders.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

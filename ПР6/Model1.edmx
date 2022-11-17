@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Photos">
+          <Key>
+            <PropertyRef Name="idPhoto" />
+          </Key>
+          <Property Name="idPhoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idSotr" Type="int" Nullable="false" />
+          <Property Name="path" Type="nvarchar(max)" />
+          <Property Name="binaryPath" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Table_Genders">
           <Key>
             <PropertyRef Name="idGender" />
@@ -84,6 +93,20 @@
           <Property Name="count" Type="float" Nullable="false" />
           <Property Name="kol" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Photos_Table_Sotrudniki">
+          <End Role="Table_Sotrudniki" Type="Self.Table_Sotrudniki" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Photos" Type="Self.Photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Sotrudniki">
+              <PropertyRef Name="idSotr" />
+            </Principal>
+            <Dependent Role="Photos">
+              <PropertyRef Name="idSotr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pokupki_Sotrudniki">
           <End Role="Table_Sotrudniki" Type="Self.Table_Sotrudniki" Multiplicity="1" />
           <End Role="Table_Pokupki" Type="Self.Table_Pokupki" Multiplicity="*" />
@@ -175,6 +198,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="Photos" EntityType="Self.Photos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_Genders" EntityType="Self.Table_Genders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_Pasporta" EntityType="Self.Table_Pasporta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_Pokupki" EntityType="Self.Table_Pokupki" Schema="dbo" store:Type="Tables" />
@@ -183,6 +207,10 @@
           <EntitySet Name="Table_Roles" EntityType="Self.Table_Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_Sotrudniki" EntityType="Self.Table_Sotrudniki" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_Tovari" EntityType="Self.Table_Tovari" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Photos_Table_Sotrudniki" Association="Self.FK_Photos_Table_Sotrudniki">
+            <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
+            <End Role="Photos" EntitySet="Photos" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pokupki_Sotrudniki" Association="Self.FK_Pokupki_Sotrudniki">
             <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
             <End Role="Table_Pokupki" EntitySet="Table_Pokupki" />
@@ -217,6 +245,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Photos" EntityType="Model.Photos" />
           <EntitySet Name="Table_Genders" EntityType="Model.Table_Genders" />
           <EntitySet Name="Table_Pasporta" EntityType="Model.Table_Pasporta" />
           <EntitySet Name="Table_Pokupki" EntityType="Model.Table_Pokupki" />
@@ -225,6 +254,10 @@
           <EntitySet Name="Table_Roles" EntityType="Model.Table_Roles" />
           <EntitySet Name="Table_Sotrudniki" EntityType="Model.Table_Sotrudniki" />
           <EntitySet Name="Table_Tovari" EntityType="Model.Table_Tovari" />
+          <AssociationSet Name="FK_Photos_Table_Sotrudniki" Association="Model.FK_Photos_Table_Sotrudniki">
+            <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
+            <End Role="Photos" EntitySet="Photos" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sotrudniki_Pol" Association="Model.FK_Sotrudniki_Pol">
             <End Role="Table_Genders" EntitySet="Table_Genders" />
             <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
@@ -254,6 +287,16 @@
             <End Role="Table_Sotrudniki" EntitySet="Table_Sotrudniki" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Photos">
+          <Key>
+            <PropertyRef Name="idPhoto" />
+          </Key>
+          <Property Name="idPhoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idSotr" Type="Int32" Nullable="false" />
+          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="binaryPath" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Table_Sotrudniki" Relationship="Model.FK_Photos_Table_Sotrudniki" FromRole="Photos" ToRole="Table_Sotrudniki" />
+        </EntityType>
         <EntityType Name="Table_Genders">
           <Key>
             <PropertyRef Name="idGender" />
@@ -331,6 +374,7 @@
           <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="Int32" Nullable="false" />
           <Property Name="idRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Photos" Relationship="Model.FK_Photos_Table_Sotrudniki" FromRole="Table_Sotrudniki" ToRole="Photos" />
           <NavigationProperty Name="Table_Genders" Relationship="Model.FK_Sotrudniki_Pol" FromRole="Table_Sotrudniki" ToRole="Table_Genders" />
           <NavigationProperty Name="Table_Pasporta" Relationship="Model.FK_Table_Pasporta_Table_Sotrudniki" FromRole="Table_Sotrudniki" ToRole="Table_Pasporta" />
           <NavigationProperty Name="Table_Pokupki" Relationship="Model.FK_Pokupki_Sotrudniki" FromRole="Table_Sotrudniki" ToRole="Table_Pokupki" />
@@ -347,6 +391,20 @@
           <NavigationProperty Name="Table_Pokupki" Relationship="Model.FK_Pokupki_Tovari" FromRole="Table_Tovari" ToRole="Table_Pokupki" />
           <NavigationProperty Name="Table_Postavki" Relationship="Model.FK_Postavki_Tovari" FromRole="Table_Tovari" ToRole="Table_Postavki" />
         </EntityType>
+        <Association Name="FK_Photos_Table_Sotrudniki">
+          <End Type="Model.Table_Sotrudniki" Role="Table_Sotrudniki" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Photos" Role="Photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Sotrudniki">
+              <PropertyRef Name="idSotr" />
+            </Principal>
+            <Dependent Role="Photos">
+              <PropertyRef Name="idSotr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sotrudniki_Pol">
           <End Type="Model.Table_Genders" Role="Table_Genders" Multiplicity="1" />
           <End Type="Model.Table_Sotrudniki" Role="Table_Sotrudniki" Multiplicity="*" />
@@ -443,6 +501,16 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Photos">
+            <EntityTypeMapping TypeName="Model.Photos">
+              <MappingFragment StoreEntitySet="Photos">
+                <ScalarProperty Name="binaryPath" ColumnName="binaryPath" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="idSotr" ColumnName="idSotr" />
+                <ScalarProperty Name="idPhoto" ColumnName="idPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Table_Genders">
             <EntityTypeMapping TypeName="Model.Table_Genders">
               <MappingFragment StoreEntitySet="Table_Genders">

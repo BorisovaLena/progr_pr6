@@ -39,7 +39,7 @@ namespace ПР6
                 {
                     case 2:
                         MessageBox.Show("Здравствуйте, администратор!");
-                        ClassFrame.mainFrame.Navigate(new PageAdminMenu());
+                        ClassFrame.mainFrame.Navigate(new PageAdminMenu(sotr));
                         break;
                     case 1:
                         MessageBox.Show("Здравствуйте, пользователь!");

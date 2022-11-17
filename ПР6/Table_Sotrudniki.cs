@@ -17,6 +17,7 @@ namespace ПР6
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Table_Sotrudniki()
         {
+            this.Photos = new HashSet<Photos>();
             this.Table_Pokupki = new HashSet<Table_Pokupki>();
         }
     
@@ -30,6 +31,8 @@ namespace ПР6
         public int password { get; set; }
         public int idRole { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Photos> Photos { get; set; }
         public virtual Table_Genders Table_Genders { get; set; }
         public virtual Table_Pasporta Table_Pasporta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
