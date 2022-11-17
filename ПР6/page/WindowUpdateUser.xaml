@@ -43,7 +43,7 @@
                 </GroupBox>
             </StackPanel>
             <StackPanel>
-                <Button Name="btnSave" Content="Сохранить" Click="btnSave_Click"/>
+                <Button Name="btnSave" Content="Сохранить" Click="btnSave_Click" Template="{StaticResource CTButon5}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
