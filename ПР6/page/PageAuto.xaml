@@ -15,10 +15,10 @@
             </StackPanel>
             <StackPanel>
                 <GroupBox Header="Введите логин">
-                    <TextBox Name="autoLogin" Text="Белкина"/>
+                    <TextBox Name="autoLogin" Text="admin"/>
                 </GroupBox>
                 <GroupBox Header="Введите пароль">
-                    <PasswordBox Name="autoPassword" Password="QWERtyu123!"/>
+                    <PasswordBox Name="autoPassword" Password="admin"/>
                 </GroupBox>
             </StackPanel>
             <Button Name="btn_Auto" Content="Войти" Click="btn_Auto_Click" Template="{StaticResource CTButon}"/>

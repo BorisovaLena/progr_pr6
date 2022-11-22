@@ -28,6 +28,15 @@ namespace ПР6
             InitializeComponent();
             listProd.ItemsSource = ClassBase.Base.Table_Tovari.ToList();
             this.user = user;
+
+            List<Table_Providers> providers = ClassBase.Base.Table_Providers.ToList();
+            cmbFilterProviders.Items.Add("Любые поставщики");
+            for(int i=0; i< providers.Count;i++)
+            {
+                cmbFilterProviders.Items.Add(providers[i].title);
+            }
+            cmbFilterProviders.SelectedIndex = 0;
+            cmbSort.SelectedIndex = 0;
         }
 
 
@@ -89,6 +98,70 @@ namespace ПР6
             Table_Tovari tovar = ClassBase.Base.Table_Tovari.FirstOrDefault(z => z.idTovar == index);
 
             ClassFrame.mainFrame.Navigate(new PageAddUpdate(tovar, user));
+        }
+
+        void Filter()
+        {
+            List<Table_Tovari> listFilter = new List<Table_Tovari>();
+
+            string provider = cmbFilterProviders.SelectedValue.ToString();
+            int index = cmbFilterProviders.SelectedIndex;
+            List<Table_Postavki> postavki = ClassBase.Base.Table_Postavki.Where(z => z.Table_Providers.title == provider).ToList();
+            
+            if (index!=0)
+            {
+                //listFilter = ClassBase.Base.Table_Tovari.Where(z => z.idTovar == ).ToList();
+            }
+            else
+            {
+                listFilter = ClassBase.Base.Table_Tovari.ToList();
+            }
+
+            if(!string.IsNullOrWhiteSpace(tbFilterTovar.Text))
+            {
+                listFilter = listFilter.Where(z=> z.tovar.ToLower().Contains(tbFilterTovar.Text.ToLower())).ToList();
+            }
+
+            if(cbKol0.IsChecked==true)
+            {
+                listFilter = listFilter.Where(z=> z.kol!=0).ToList();
+            }
+
+            switch(cmbSort.SelectedIndex)
+            {
+                case 1:
+                    listFilter.Sort((x,y) => x.tovar.CompareTo(y.tovar));
+                    break;
+                case 2:
+                    listFilter.Sort((x, y) => x.tovar.CompareTo(y.tovar));
+                    listFilter.Reverse();
+                    break;
+            }
+
+
+            listProd.ItemsSource = listFilter;
+
+            if(listFilter.Count == 0)
+            {
+                MessageBox.Show("нет записей");
+            }
+
+        }
+
+
+        private void cbFilterProviders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void tbFilterTovar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void cbKol0_Checked(object sender, RoutedEventArgs e)
+        {
+            Filter();
         }
     }
 }

@@ -59,14 +59,6 @@ namespace ПР6
                 byte[] Bar = photos[photos.Count - 1].binaryPath;
                 showImage(Bar, photoUser);
             }
-
-            foreach (Photos photo in lbPhotos.Items)
-            {
-                if (photo.idSotr == user.idSotr)
-                {
-                    
-                }    
-            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -107,19 +99,6 @@ namespace ПР6
             }
             
             
-        }
-
-        int n = 0;
-        private void updatePhoto_Click(object sender, RoutedEventArgs e)
-        {
-
-            List<Photos> photos = ClassBase.Base.Photos.Where(x => x.idSotr == user.idSotr).ToList();
-            if (photos != null)
-            {
-
-                byte[] Bar = photos[n].binaryPath;
-                showImage(Bar, photoUser);
-            }
         }
 
         private void addPhotos_Click(object sender, RoutedEventArgs e)

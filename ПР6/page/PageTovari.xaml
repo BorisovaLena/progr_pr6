@@ -10,10 +10,24 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
+            <RowDefinition />
+            <RowDefinition Height="6*"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" Name="listProd" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="500">
+        <StackPanel Grid.Row="0">
+            <ComboBox Name="cmbFilterProviders" SelectionChanged="cbFilterProviders_SelectionChanged"/>
+            <GroupBox Header="Введите название для поиска">
+                <TextBox Name="tbFilterTovar" TextChanged="tbFilterTovar_TextChanged"/>
+            </GroupBox>
+            <CheckBox Name="cbKol0" Content="Есть ли на складе" Checked="cbKol0_Checked" Unchecked="cbKol0_Checked"/>
+            <ComboBox Name="cmbSort" SelectionChanged="cbFilterProviders_SelectionChanged">
+                <ComboBoxItem>Без сотрировки</ComboBoxItem>
+                <ComboBoxItem>От А до Я</ComboBoxItem>
+                <ComboBoxItem>От Я до А</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        
+        <ListView Grid.Row="1" Name="listProd" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="500">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel HorizontalAlignment="Center"></WrapPanel>
@@ -39,7 +53,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button Name="Add" Content="Добавить" Template="{StaticResource CTButon}" Click="Add_Click"/>
             <Button Name="Back" Content="Назад" Template="{StaticResource CTButon}" Click="Back_Click"/>
         </StackPanel>
