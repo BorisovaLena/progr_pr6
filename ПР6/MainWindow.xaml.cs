@@ -1,6 +1,8 @@
 ﻿
 //Логин администратора: admin
 //Пароль администратора: admin
+//Логин пользователя: Белкина
+//Пароль пользователя: QWERtyu123!
 
 using System;
 using System.Collections.Generic;

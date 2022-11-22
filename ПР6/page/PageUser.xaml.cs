@@ -28,7 +28,7 @@ namespace ПР6
 
         public object OpenFileDialoge { get; private set; }
 
-        void showImage(byte[] Barray, Image img)
+        void showImage(byte[] Barray, System.Windows.Controls.Image img)
         {
             BitmapImage BI = new BitmapImage();
             using (MemoryStream m = new MemoryStream(Barray))
@@ -53,6 +53,20 @@ namespace ПР6
             Seria.Text = Convert.ToString(user.Table_Pasporta.seria);
             Number.Text = Convert.ToString(user.Table_Pasporta.number);
             Vidan.Text = user.Table_Pasporta.vidan;
+            List<Photos> photos = ClassBase.Base.Photos.Where(z => z.idSotr == user.idSotr).ToList(); 
+            if (photos.Count != 0) 
+            {
+                byte[] Bar = photos[photos.Count - 1].binaryPath;
+                showImage(Bar, photoUser);
+            }
+
+            foreach (Photos photo in lbPhotos.Items)
+            {
+                if (photo.idSotr == user.idSotr)
+                {
+                    
+                }    
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -69,7 +83,7 @@ namespace ПР6
             ClassFrame.mainFrame.Navigate(new PageUser(user));
         }
 
-        private void addPhoto_Click(object sender, RoutedEventArgs e)
+        private void addPhoto_Click(object sender, RoutedEventArgs e) //добавление картинки
         {
             try
             {
@@ -80,13 +94,61 @@ namespace ПР6
                 string path = OFD.FileName;
                 System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);
                 ImageConverter IC = new ImageConverter();
+                byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[])); 
+                photo.binaryPath = Barray; 
+                ClassBase.Base.Photos.Add(photo);
+                ClassBase.Base.SaveChanges();
+                MessageBox.Show("Успешное добавление фото!!!");
+                ClassFrame.mainFrame.Navigate(new PageUser(user));
             }
             catch
             {
-
+                MessageBox.Show("Косяк!");
             }
             
             
+        }
+
+        int n = 0;
+        private void updatePhoto_Click(object sender, RoutedEventArgs e)
+        {
+
+            List<Photos> photos = ClassBase.Base.Photos.Where(x => x.idSotr == user.idSotr).ToList();
+            if (photos != null)
+            {
+
+                byte[] Bar = photos[n].binaryPath;
+                showImage(Bar, photoUser);
+            }
+        }
+
+        private void addPhotos_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog OFD = new OpenFileDialog();
+                OFD.Multiselect = true;
+                if (OFD.ShowDialog() == true)
+                {
+                    foreach (string file in OFD.FileNames)
+                    {
+                        Photos photo = new Photos();
+                        photo.idSotr = user.idSotr;
+                        string path = file;
+                        System.Drawing.Image SDI = System.Drawing.Image.FromFile(file);
+                        ImageConverter IC = new ImageConverter();
+                        byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));
+                        photo.binaryPath = Barray;
+                        ClassBase.Base.Photos.Add(photo);
+                    }
+                    ClassBase.Base.SaveChanges();
+                    MessageBox.Show("Успешное добавление фото!!!");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Косяк!");
+            }
         }
     }
 }
