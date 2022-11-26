@@ -18,8 +18,9 @@
                 <StackPanel Orientation="Horizontal">
                     <Image Name="photoUser"  Source="\image\photo.png" Margin="20,10,20,10" Width="150" HorizontalAlignment="Left"/>
                     <StackPanel VerticalAlignment="Center">
-                        <Button Name="addPhoto" Content="Добавить фото" Click="addPhoto_Click"  Template="{StaticResource CTButon3}"/>
+                        <Button Name="addPhoto" Content="Изменить фото" Click="addPhoto_Click"  Template="{StaticResource CTButon3}"/>
                         <Button x:Name="addPhotos" Content="Добавить несколько фото" Click="addPhotos_Click" Template="{StaticResource CTButon3}"/>
+                        <!--<Button Name="btnUpdatePhoto" Content="Изменить фото на старое" Click="btnUpdatePhoto_Click" Template="{StaticResource CTButon3}"/>-->
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Width="450" HorizontalAlignment="Left">
@@ -62,14 +63,14 @@
                     <Button Name="btnLogPas" Content="Изменить логин и пароль" Click="btnLogPas_Click" Template="{StaticResource CTButon5}"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Name="gallery">
+            <StackPanel Name="gallery" Visibility="Collapsed">
                 <TextBlock Text="Галерея"/>
                 <StackPanel Orientation="Horizontal">
-                    <Button Name="btnBack" Content="&lt;"/>
-                    <Image Name="imPhoto" Width="200" Height="200"/>
-                    <Button Name="btnNext" Content=">"/>
+                    <Button Name="btnBack" Content="&lt;" Click="btnBack_Click" Template="{StaticResource CTButon6}"/>
+                    <Image Name="imPhoto" Width="250" Height="250"/>
+                    <Button Name="btnNext" Content=">" Click="btnNext_Click" Template="{StaticResource CTButon6}"/>
                 </StackPanel>
-                <Button Name="btnAddPhotoOld" Content="Изменить фото на выбранное"/>
+                <Button Name="btnAddPhotoOld" Content="Изменить фото" Click="btnAddPhotoOld_Click" Template="{StaticResource CTButon5}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
