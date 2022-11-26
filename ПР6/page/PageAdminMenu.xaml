@@ -50,10 +50,10 @@
                 </GroupBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Name="btnUpdate" Content="Редактировать данные" Click="btnUpdate_Click" Template="{StaticResource CTButon5}" />
-                <Button Name="btnLogPas" Content="Изменить логин и пароль" Click="btnLogPas_Click" Template="{StaticResource CTButon5}"/>
-                <Button Name="btnSelectUser" Content="Пользователи" Click="btnSelectUser_Click"  Template="{StaticResource CTButon3}"/>
-                <Button Name="btnSelectTovar" Content="Товары" Click="btnSelectTovar_Click" Template="{StaticResource CTButon3}"/>
+                <Button Name="btnUpdate" Content="Редактировать данные" Click="btnUpdate_Click" Template="{StaticResource CTButon7}" />
+                <Button Name="btnLogPas" Content="Изменить логин и пароль" Click="btnLogPas_Click" Template="{StaticResource CTButon7}"/>
+                <Button Name="btnSelectUser" Content="Пользователи" Click="btnSelectUser_Click"  Template="{StaticResource CTButon8}"/>
+                <Button Name="btnSelectTovar" Content="Товары" Click="btnSelectTovar_Click" Template="{StaticResource CTButon8}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

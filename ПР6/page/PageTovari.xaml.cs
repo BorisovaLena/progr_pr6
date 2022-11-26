@@ -107,10 +107,14 @@ namespace ПР6
             string provider = cmbFilterProviders.SelectedValue.ToString();
             int index = cmbFilterProviders.SelectedIndex;
             List<Table_Postavki> postavki = ClassBase.Base.Table_Postavki.Where(z => z.Table_Providers.title == provider).ToList();
-            
+            //foreach(Table_Postavki post in postavki)
+            //{
+            //    if()
+            //    listFilter.Add(post.Table_Providers.title);
+            //}
             if (index!=0)
             {
-                //listFilter = ClassBase.Base.Table_Tovari.Where(z => z.idTovar == ).ToList();
+                //listFilter = ClassBase.Base.Table_Tovari.Where(z => z.idTovar==).ToList();
             }
             else
             {
