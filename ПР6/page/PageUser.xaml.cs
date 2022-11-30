@@ -25,21 +25,30 @@ namespace ПР6
     public partial class PageUser : Page
     {
         Table_Sotrudniki user;
+        string path;
 
         public object OpenFileDialoge { get; private set; }
 
         void showImage(byte[] Barray, System.Windows.Controls.Image img)
         {
-            BitmapImage BI = new BitmapImage();
-            using (MemoryStream m = new MemoryStream(Barray))
+            try
             {
-                BI.BeginInit();
-                BI.StreamSource = m;
-                BI.CacheOption = BitmapCacheOption.OnLoad;
-                BI.EndInit();
+                BitmapImage BI = new BitmapImage();
+                using (MemoryStream m = new MemoryStream(Barray))
+                {
+                    BI.BeginInit();
+                    BI.StreamSource = m;
+                    BI.CacheOption = BitmapCacheOption.OnLoad;
+                    BI.EndInit();
+                }
+                img.Source = BI;
+                img.Stretch = Stretch.Uniform;
             }
-            img.Source = BI;
-            img.Stretch = Stretch.Uniform;
+            catch
+            {
+
+                img.Source = ;
+            }
         }
 
         public PageUser(Table_Sotrudniki user)
@@ -77,35 +86,36 @@ namespace ПР6
 
         private void addPhoto_Click(object sender, RoutedEventArgs e) //добавление картинки
         {
-            switch(MessageBox.Show("Выхотите добавить новое фото?", "", MessageBoxButton.YesNoCancel))
+            Photos photo = new Photos();
+            try
             {
-                case MessageBoxResult.Yes:
-                    try
-                    {
-                        Photos photo = new Photos();
-                        photo.idSotr = user.idSotr;
-                        OpenFileDialog OFD = new OpenFileDialog();
-                        OFD.ShowDialog();
-                        string path = OFD.FileName;
-                        System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);
-                        ImageConverter IC = new ImageConverter();
-                        byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));
-                        photo.binaryPath = Barray;
-                        ClassBase.Base.Photos.Add(photo);
-                        ClassBase.Base.SaveChanges();
-                        MessageBox.Show("Успешное добавление фото!!!");
-                        ClassFrame.mainFrame.Navigate(new PageUser(user));
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Косяк!");
-                    }
-                    break;
-                case MessageBoxResult.No:
-                    btnUpdatePhoto_Click();
-                    break;
-                    default:
-                    break;
+                photo.idSotr = user.idSotr;
+                OpenFileDialog OFD = new OpenFileDialog();
+                OFD.ShowDialog();
+                string path = OFD.FileName;
+                System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);
+                ImageConverter IC = new ImageConverter();
+                byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));
+                photo.binaryPath = Barray;
+                ClassBase.Base.Photos.Add(photo);
+                ClassBase.Base.SaveChanges();
+                MessageBox.Show("Успешное добавление фото!!!");
+                ClassFrame.mainFrame.Navigate(new PageUser(user));
+            }
+            catch
+            {
+                //MessageBox.Show("Косяк!");
+
+                OpenFileDialog OFD = new OpenFileDialog();
+                OFD.ShowDialog();
+                path = OFD.FileName;
+                string[] arrayPath = path.Split('\\');
+                path = "\\" + arrayPath[arrayPath.Length - 2] + "\\" + arrayPath[arrayPath.Length - 1]; 
+                photo.path = path;
+                ClassBase.Base.Photos.Add(photo);
+                ClassBase.Base.SaveChanges();
+                MessageBox.Show("Успешное добавление фото!!!");
+                ClassFrame.mainFrame.Navigate(new PageUser(user));
             }
         }
 
@@ -181,7 +191,8 @@ namespace ПР6
             showImage(Bar, photoUser);
         }
 
-        void btnUpdatePhoto_Click()
+
+        private void btnUpdatePhoto_Click(object sender, RoutedEventArgs e)
         {
             gallery.Visibility = Visibility.Visible;
             List<Photos> u = ClassBase.Base.Photos.Where(x => x.idSotr == user.idSotr).ToList();

@@ -16,11 +16,11 @@
                     <TextBlock Text="Личный кабинет" Style="{StaticResource TBlockZag}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Image Name="photoUser"  Source="\image\photo.png" Margin="20,10,20,10" Width="150" HorizontalAlignment="Left"/>
+                    <Image Name="photoUser" Source="\image\photo.png" Margin="20,10,20,10" Width="150" HorizontalAlignment="Left"/>
                     <StackPanel VerticalAlignment="Center">
-                        <Button Name="addPhoto" Content="Изменить фото" Click="addPhoto_Click"  Template="{StaticResource CTButon3}"/>
+                        <Button Name="addPhoto" Content="Добавить фото" Click="addPhoto_Click"  Template="{StaticResource CTButon3}"/>
                         <Button x:Name="addPhotos" Content="Добавить несколько фото" Click="addPhotos_Click" Template="{StaticResource CTButon3}"/>
-                        <!--<Button Name="btnUpdatePhoto" Content="Изменить фото на старое" Click="btnUpdatePhoto_Click" Template="{StaticResource CTButon3}"/>-->
+                        <Button Name="btnUpdatePhoto" Content="Изменить фото на старое" Click="btnUpdatePhoto_Click" Template="{StaticResource CTButon3}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Width="450" HorizontalAlignment="Left">
