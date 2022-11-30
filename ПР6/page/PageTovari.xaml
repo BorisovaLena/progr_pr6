@@ -15,19 +15,23 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <ComboBox Name="cmbFilterProviders" SelectionChanged="cbFilterProviders_SelectionChanged"/>
+            <ComboBox Name="cmbFilterProviders" SelectionChanged="cbFilterProviders_SelectionChanged"  FontSize="18"/>
             <GroupBox Header="Введите название для поиска">
                 <TextBox Name="tbFilterTovar" TextChanged="tbFilterTovar_TextChanged"/>
             </GroupBox>
             <CheckBox Name="cbKol0" Content="Есть ли на складе" Checked="cbKol0_Checked" Unchecked="cbKol0_Checked"/>
-            <ComboBox Name="cmbSort" SelectionChanged="cbFilterProviders_SelectionChanged">
+            <ComboBox Name="cmbSort" SelectionChanged="cbFilterProviders_SelectionChanged" FontSize="18">
                 <ComboBoxItem>Без сотрировки</ComboBoxItem>
-                <ComboBoxItem>От А до Я</ComboBoxItem>
-                <ComboBoxItem>От Я до А</ComboBoxItem>
+                <ComboBoxItem>По названию от А до Я</ComboBoxItem>
+                <ComboBoxItem>По названию от Я до А</ComboBoxItem>
+                <ComboBoxItem>По цене по возрастанию</ComboBoxItem>
+                <ComboBoxItem>По цене по убыванию</ComboBoxItem>
+                <ComboBoxItem>По количеству по возрастанию</ComboBoxItem>
+                <ComboBoxItem>По количеству по убыванию</ComboBoxItem>
             </ComboBox>
         </StackPanel>
         
-        <ListView Grid.Row="1" Name="listProd" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="500">
+        <ListView Grid.Row="1" Name="listProd" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="380">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel HorizontalAlignment="Center"></WrapPanel>

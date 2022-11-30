@@ -103,18 +103,22 @@ namespace ПР6
         void Filter()
         {
             List<Table_Tovari> listFilter = new List<Table_Tovari>();
-
+            List<Table_Tovari> list1 = ClassBase.Base.Table_Tovari.ToList();
             string provider = cmbFilterProviders.SelectedValue.ToString();
             int index = cmbFilterProviders.SelectedIndex;
             List<Table_Postavki> postavki = ClassBase.Base.Table_Postavki.Where(z => z.Table_Providers.title == provider).ToList();
-            //foreach(Table_Postavki post in postavki)
-            //{
-            //    if()
-            //    listFilter.Add(post.Table_Providers.title);
-            //}
-            if (index!=0)
+            if(index!=0)
             {
-                //listFilter = ClassBase.Base.Table_Tovari.Where(z => z.idTovar==).ToList();
+                foreach (Table_Postavki tp in postavki)
+                {
+                    foreach(Table_Tovari tovar in list1)
+                    {
+                        if(tovar.idTovar== tp.idTovar)
+                        {
+                            listFilter.Add(tovar);
+                        }
+                    }
+                }
             }
             else
             {
@@ -140,18 +144,28 @@ namespace ПР6
                     listFilter.Sort((x, y) => x.tovar.CompareTo(y.tovar));
                     listFilter.Reverse();
                     break;
+                case 3:
+                    listFilter.Sort((x, y) => x.count.CompareTo(y.count));
+                    break;
+                case 4:
+                    listFilter.Sort((x,y)=>x.count.CompareTo(y.count));
+                    listFilter.Reverse();
+                    break;
+                case 5:
+                    listFilter.Sort((x, y) => x.kol.CompareTo(y.kol));
+                    break;
+                case 6:
+                    listFilter.Sort((x, y) => x.kol.CompareTo(y.kol));
+                    listFilter.Reverse();
+                    break;
             }
-
-
             listProd.ItemsSource = listFilter;
 
             if(listFilter.Count == 0)
             {
                 MessageBox.Show("нет записей");
             }
-
         }
-
 
         private void cbFilterProviders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

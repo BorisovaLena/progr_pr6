@@ -15,11 +15,11 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Name="btnSelect" Content="Исходная" Click="btnSelect_Click" Template="{StaticResource CTButon3}"/>
-                <Button Name="btnSortAsc" Content="По возрастанию" Click="btnSortAsc_Click" Template="{StaticResource CTButon3}"/>
-                <Button Name="btnSortDesc" Content="По убыванию" Click="btnSortDesc_Click" Template="{StaticResource CTButon3}"/>
-                <Button Name="btnFiltM" Content="мужчины" Click="btnFiltM_Click" Template="{StaticResource CTButon3}"/>
-                <Button Name="btnFiltW" Content="женщины" Click="btnFiltW_Click" Template="{StaticResource CTButon3}"/>
+                <Button Name="btnSelect" Content="Исходная" Click="btnSelect_Click" Template="{StaticResource CTButon2}"/>
+                <Button Name="btnSortAsc" Content="По возрастанию" Click="btnSortAsc_Click" Template="{StaticResource CTButon2}"/>
+                <Button Name="btnSortDesc" Content="По убыванию" Click="btnSortDesc_Click" Template="{StaticResource CTButon2}"/>
+                <Button Name="btnFiltM" Content="мужчины" Click="btnFiltM_Click" Template="{StaticResource CTButon2}"/>
+                <Button Name="btnFiltW" Content="женщины" Click="btnFiltW_Click" Template="{StaticResource CTButon2}"/>
             </StackPanel>
             <GroupBox Header="Выберите критерий поиска">
                 <StackPanel>
