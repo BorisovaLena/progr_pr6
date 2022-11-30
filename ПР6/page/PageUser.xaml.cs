@@ -47,7 +47,7 @@ namespace ПР6
             catch
             {
 
-                img.Source = ;
+                //img.Source = ;
             }
         }
 

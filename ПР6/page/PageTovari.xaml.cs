@@ -21,7 +21,9 @@ namespace ПР6
     /// </summary>
     public partial class PageTovari : Page
     {
+        ClassPagin pc = new ClassPagin();
         Table_Sotrudniki user;
+        List<Table_Tovari> listFilter = new List<Table_Tovari>();
         List<Table_Tovari> tovar = ClassBase.Base.Table_Tovari.ToList();
         public PageTovari(Table_Sotrudniki user)
         {
@@ -37,6 +39,9 @@ namespace ПР6
             }
             cmbFilterProviders.SelectedIndex = 0;
             cmbSort.SelectedIndex = 0;
+
+            pc.CountPage = ClassBase.Base.Table_Tovari.ToList().Count;
+            DataContext = pc;
         }
 
 
@@ -102,13 +107,13 @@ namespace ПР6
 
         void Filter()
         {
-            List<Table_Tovari> listFilter = new List<Table_Tovari>();
             List<Table_Tovari> list1 = ClassBase.Base.Table_Tovari.ToList();
             string provider = cmbFilterProviders.SelectedValue.ToString();
             int index = cmbFilterProviders.SelectedIndex;
             List<Table_Postavki> postavki = ClassBase.Base.Table_Postavki.Where(z => z.Table_Providers.title == provider).ToList();
             if(index!=0)
             {
+                listFilter = new List<Table_Tovari>();
                 foreach (Table_Postavki tp in postavki)
                 {
                     foreach(Table_Tovari tovar in list1)
@@ -159,9 +164,9 @@ namespace ПР6
                     listFilter.Reverse();
                     break;
             }
-            listProd.ItemsSource = listFilter;
 
-            if(listFilter.Count == 0)
+            listProd.ItemsSource = listFilter;
+            if (listFilter.Count == 0)
             {
                 MessageBox.Show("нет записей");
             }
@@ -180,6 +185,46 @@ namespace ПР6
         private void cbKol0_Checked(object sender, RoutedEventArgs e)
         {
             Filter();
+        }
+
+        private void GoPage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+
+            switch (tb.Uid)  // определяем, куда конкретно было сделано нажатие
+            {
+                case "prev":
+                    pc.CurrentPage--;
+                    break;
+                case "next":
+                    pc.CurrentPage++;
+                    break;
+                case "firstPage":
+                    pc.CurrentPage = 1;
+                    break;
+                case "lastPage":
+                    pc.CurrentPage = pc.CountPages;
+                    break;
+                default:
+                    pc.CurrentPage = Convert.ToInt32(tb.Text);
+                    break;
+            }
+            listProd.ItemsSource = listFilter.Skip(pc.CurrentPage * pc.CountPage - pc.CountPage).Take(pc.CountPage).ToList();  // оображение записей постранично с определенным количеством на каждой странице
+        }
+
+        private void txtPageCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                pc.CountPage = Convert.ToInt32(txtPageCount.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
+            }
+            catch
+            {
+                pc.CountPage = listFilter.Count; // если в текстовом поле значения нет, присваиваем свойству объекта, которое хранит количество записей на странице количество элементов в списке
+            }
+            pc.Countlist = listFilter.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
+            listProd.ItemsSource = listFilter.Skip(0).Take(pc.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
+            pc.CurrentPage = 1; // текущая страница - это страница 1
         }
     }
 }
