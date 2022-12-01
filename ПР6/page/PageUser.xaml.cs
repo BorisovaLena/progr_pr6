@@ -25,30 +25,21 @@ namespace ПР6
     public partial class PageUser : Page
     {
         Table_Sotrudniki user;
-        string path;
 
         public object OpenFileDialoge { get; private set; }
 
         void showImage(byte[] Barray, System.Windows.Controls.Image img)
         {
-            try
+            BitmapImage BI = new BitmapImage();
+            using (MemoryStream m = new MemoryStream(Barray))
             {
-                BitmapImage BI = new BitmapImage();
-                using (MemoryStream m = new MemoryStream(Barray))
-                {
-                    BI.BeginInit();
-                    BI.StreamSource = m;
-                    BI.CacheOption = BitmapCacheOption.OnLoad;
-                    BI.EndInit();
-                }
-                img.Source = BI;
-                img.Stretch = Stretch.Uniform;
+                BI.BeginInit();
+                BI.StreamSource = m;
+                BI.CacheOption = BitmapCacheOption.OnLoad;
+                BI.EndInit();
             }
-            catch
-            {
-
-                //img.Source = ;
-            }
+            img.Source = BI;
+            img.Stretch = Stretch.Uniform;
         }
 
         public PageUser(Table_Sotrudniki user)
@@ -104,18 +95,7 @@ namespace ПР6
             }
             catch
             {
-                //MessageBox.Show("Косяк!");
-
-                OpenFileDialog OFD = new OpenFileDialog();
-                OFD.ShowDialog();
-                path = OFD.FileName;
-                string[] arrayPath = path.Split('\\');
-                path = "\\" + arrayPath[arrayPath.Length - 2] + "\\" + arrayPath[arrayPath.Length - 1]; 
-                photo.path = path;
-                ClassBase.Base.Photos.Add(photo);
-                ClassBase.Base.SaveChanges();
-                MessageBox.Show("Успешное добавление фото!!!");
-                ClassFrame.mainFrame.Navigate(new PageUser(user));
+                MessageBox.Show("Косяк!");
             }
         }
 
@@ -148,6 +128,7 @@ namespace ПР6
             }
         }
         int n = 0;
+
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             List<Photos> u = ClassBase.Base.Photos.Where(x => x.idSotr == user.idSotr).ToList();
@@ -163,6 +144,7 @@ namespace ПР6
                 n = -1;
             }
         }
+
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             List<Photos> u = ClassBase.Base.Photos.Where(x => x.idSotr == user.idSotr).ToList();
@@ -181,7 +163,6 @@ namespace ПР6
                 BitmapImage BI = new BitmapImage();
                 showImage(Bar, imPhoto);
             }
-            
         }
 
         private void btnAddPhotoOld_Click(object sender, RoutedEventArgs e)
@@ -190,7 +171,6 @@ namespace ПР6
             byte[] Bar = u[n].binaryPath;
             showImage(Bar, photoUser);
         }
-
 
         private void btnUpdatePhoto_Click(object sender, RoutedEventArgs e)
         {
