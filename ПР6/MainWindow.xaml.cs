@@ -44,5 +44,10 @@ namespace ПР6
         {
             ClassFrame.mainFrame.Navigate(new PageReg());
         }
+
+        private void btnRecl_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.mainFrame.Navigate(new page.PageAdvertisement());
+        }
     }
 }

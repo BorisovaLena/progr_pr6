@@ -79,7 +79,13 @@
                 <ContentControl Content="{TemplateBinding Content}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="18"/>
             </Border>
         </ControlTemplate>
-        
+
+        <ControlTemplate TargetType="Button" x:Key="Button">
+            <Border CornerRadius="10" Background="{TemplateBinding Background}" Height="45" Width="250" >
+                <ContentControl  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"  FontFamily="Comic Sans MS" FontWeight="Light" Content="{TemplateBinding Content}"/>
+            </Border>
+        </ControlTemplate>
+
 
     </Application.Resources>
 </Application>
