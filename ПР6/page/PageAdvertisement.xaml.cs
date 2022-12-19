@@ -26,8 +26,8 @@ namespace ПР6.page
             InitializeComponent();
 
             DoubleAnimation FS = new DoubleAnimation(); //анимация на размер шрифта
-            FS.From = 20;
-            FS.To = 30;
+            FS.From = 30;
+            FS.To = 40;
             FS.Duration = TimeSpan.FromSeconds(5);
             FS.RepeatBehavior = RepeatBehavior.Forever;
             FS.AutoReverse = true;
@@ -39,7 +39,7 @@ namespace ПР6.page
             IW.Duration = TimeSpan.FromSeconds(2);
             IW.RepeatBehavior = RepeatBehavior.Forever;
             IW.AutoReverse = true;
-            //image.BeginAnimation(WidthProperty, IW);
+            image.BeginAnimation(WidthProperty, IW);
 
             DoubleAnimation IH = new DoubleAnimation(); //анимация на длину картинки
             IH.From = 200;
@@ -47,15 +47,27 @@ namespace ПР6.page
             IH.Duration = TimeSpan.FromSeconds(2);
             IH.RepeatBehavior = RepeatBehavior.Forever;
             IH.AutoReverse = true;
-            //image.BeginAnimation(HeightProperty, IH);
+            image.BeginAnimation(HeightProperty, IH);
 
             ThicknessAnimation MA = new ThicknessAnimation(); // анимация границ кнопки
-            MA.From = new Thickness(50, 0, 50, 0);
+            MA.From = new Thickness(50, 50, 50, 50);
             MA.To = new Thickness(0, 0, 0, 0);
             MA.Duration = TimeSpan.FromSeconds(3);
             MA.RepeatBehavior = RepeatBehavior.Forever;
             MA.AutoReverse = true;
-            //btn.BeginAnimation(MarginProperty, MA);
+            btn.BeginAnimation(MarginProperty, MA);
+
+            ColorAnimation BA = new ColorAnimation();
+            ColorConverter CC = new ColorConverter(); // создание объекта для конвертации кода в цвет
+            Color Cstart = (Color)CC.ConvertFrom("#F679FF"); // присваивание начального цвета эл-ту
+            btn.Background = new SolidColorBrush(Cstart); // закрашивание эл-та сплошным цветом
+            BA.From = Cstart; // начальное значение свойства
+            BA.To = (Color)CC.ConvertFrom("#EAFF73"); // конечное значение свойства
+            BA.Duration = TimeSpan.FromSeconds(3);
+            BA.AutoReverse = true;
+            BA.RepeatBehavior = RepeatBehavior.Forever;
+            btn.Background.BeginAnimation(SolidColorBrush.ColorProperty, BA);
+
         }
     }
 }
